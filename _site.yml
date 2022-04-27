@@ -1,11 +1,11 @@
-name: "MyLabJournal"
+name: "Aflore"
 navbar:
-  title: "MyLabJournal"
+  title: "Aflore"
   left:
     - text: "Home"
       href: index.html
-    - text: "Journal"
-      href: Journal.html
-    - text: "Links"
-      href: Links.html
+    - text: "PQR'S"
+      href: PQRs.html
+    - text: "5 Estrellas"
+      href: 5estrellas.html
 output_dir: "docs"
