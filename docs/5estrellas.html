@@ -32,6 +32,13 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -293,6 +300,9 @@ se ve un incremento en resultado 5 estrellas</p></li>
 <div id="revisión-solicitudes-1-al-20-de-abril" class="section level1">
 <h1>Revisión solicitudes 1 al 20 de abril</h1>
 <p><img src="5estrellas_files/figure-html/plot1-1.png" width="960" /></p>
+<pre><code>##   Grupo.edad   n
+## 1 &lt;= 6 meses   4
+## 2  &gt; 6 meses 137</code></pre>
 </div>
 <div id="solicitudes-por-categoría" class="section level1">
 <h1>Solicitudes por categoría</h1>
@@ -301,7 +311,12 @@ se ve un incremento en resultado 5 estrellas</p></li>
 <div id="promedio-de-crédito-por-categoría" class="section level1">
 <h1>Promedio de crédito por categoría</h1>
 <p><img src="5estrellas_files/figure-html/promedio%20ticket-1.png" width="672" /></p>
-<p><img src="5estrellas_files/figure-html/plot5-1.png" width="672" /></p>
+<div id="htmlwidget-57c2e64118c0fbba1fcd" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-57c2e64118c0fbba1fcd">{"x":{"data":[{"x":[-719053,-718688,-718323,-717957,-717592,-717227,-716862,-716496,-716131,-715766,-715401,-715035,-714670,-714305,-713940,-713574,-713209,-712844,-712479,-712113,-711748,-711383,-711018,-710652,-710287,-709922],"y":[14,6,4,20,15,16,19,22,6,7,17,14,14,6,2,1,2,15,15,5,4,3,2,2,2,3],"text":["fecha: 1-04-20<br />valor: 14","fecha: 2-04-20<br />valor:  6","fecha: 3-04-20<br />valor:  4","fecha: 4-04-20<br />valor: 20","fecha: 5-04-20<br />valor: 15","fecha: 6-04-20<br />valor: 16","fecha: 7-04-20<br />valor: 19","fecha: 8-04-20<br />valor: 22","fecha: 9-04-20<br />valor:  6","fecha: 10-04-20<br />valor:  7","fecha: 11-04-20<br />valor: 17","fecha: 12-04-20<br />valor: 14","fecha: 13-04-20<br />valor: 14","fecha: 14-04-20<br />valor:  6","fecha: 15-04-20<br />valor:  2","fecha: 16-04-20<br />valor:  1","fecha: 17-04-20<br />valor:  2","fecha: 18-04-20<br />valor: 15","fecha: 19-04-20<br />valor: 15","fecha: 20-04-20<br />valor:  5","fecha: 21-04-20<br />valor:  4","fecha: 22-04-20<br />valor:  3","fecha: 23-04-20<br />valor:  2","fecha: 24-04-20<br />valor:  2","fecha: 25-04-20<br />valor:  2","fecha: 26-04-20<br />valor:  3"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-719509.55,-709465.45],"tickmode":"array","ticktext":["5","10","15","20","25"],"tickvals":[-717701,-715875,-714049,-712223,-710396],"categoryorder":"array","categoryarray":["5","10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"fecha","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.05,23.05],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,5,10,15,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"valor","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"262e286a3967":{"x":{},"y":{},"type":"scatter"}},"cur_data":"262e286a3967","visdat":{"262e286a3967":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>En los días de semana santa se ve una caída en el número de
+solicitudes para 5 estrellas, esta tendencia se revierte para el lunes
+18 y 19 de abril, a partir del 21 se vuelven a caer el número de
+solicitudes hasta el día 25 que vuelven a subir los valores.</p>
 </div>
 
 

@@ -40,7 +40,7 @@ library(plotly)
 
 ```{r data manipulation, echo=FALSE, message=FALSE, warning=FALSE}
 solicitudes<-read.csv("~/Documentos/GitHub/LabJournalWebsite-master/docs/solicitudes_consejeros_1_20_abril.csv",sep=";")
-timeline<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/5estrellas_files/solicitudes_5_1marzo_27abril.xlsx")
+timeline<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/solicitudes_5_1abril_27abril.xlsx")
 solicitudes$X..Solicitudes<-as.numeric(solicitudes$X..Solicitudes)
 solicitudes$aprobadas<-as.numeric(solicitudes$aprobadas)
 solicitudes$Desembolsadas<-as.numeric(solicitudes$Desembolsadas)
@@ -78,13 +78,12 @@ solicitudes %>% na.omit(Ticket.promedio) %>% group_by(Categoria.consejero) %>% s
 ```{r plot5}
 # unique(solicitudes_5$advisor_name)
 # unique(solicitudes_5$advisor_id)
-a<-colnames(timeline)[2:58]
+a<-colnames(timeline)[2:27]
 
 b<-timeline %>% pivot_longer(cols = a,names_to = "fecha",values_to = "valor") %>% filter(Agrupacion=="5 Estrellas > 6 meses")
 b$fecha<-as.Date(b$fecha) 
+ggplotly(b %>% ggplot(aes(x=fecha,y=valor))+geom_line())
 
-b %>% filter(fecha<"31-03-20")
-b[34:57,]
-
-plot(ts(data = b[34:57,]$valor))
 ```
+
+En los días de semana santa se ve una caída en el número de solicitudes para 5 estrellas, esta tendencia se revierte para el lunes 18 y 19 de abril, a partir del 21 se vuelven a caer el número de solicitudes hasta el día 25 que vuelven a subir los valores.
