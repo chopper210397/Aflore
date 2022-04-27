@@ -84,6 +84,13 @@ b<-timeline %>% pivot_longer(cols = a,names_to = "fecha",values_to = "valor") %>
 b$fecha<-as.Date(b$fecha) 
 ggplotly(b %>% ggplot(aes(x=fecha,y=valor))+geom_line())
 
+# como ver el impacto de solicitudes, hay unas que vienen de gestion comercial y otras que no, como sacar el gráfico solo con las de gestión comercial
+
+# después de una gestión comercial el impacto se ve hasta 10 días hábiles después que se contacta
+
+
 ```
 
-En los días de semana santa se ve una caída en el número de solicitudes para 5 estrellas, esta tendencia se revierte para el lunes 18 y 19 de abril, a partir del 21 se vuelven a caer el número de solicitudes hasta el día 25 que vuelven a subir los valores.
+En los días de semana santa se ve una caída en el número de solicitudes para 5 estrellas, esta tendencia se revierte para el lunes 18 y 19 de abril, a partir del 20 se vuelven a caer el número de solicitudes hasta el día 26 que vuelven a subir los valores.
+
+# 
