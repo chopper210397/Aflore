@@ -56,7 +56,10 @@ solicitudes_5_consejero<-solicitudes_5 %>% group_by(advisor_name) %>% summarise(
 # Revisión solicitudes 1 al 20 de abril
 
 ```{r plot1,fig.width=10,fig.height=10}
+# mejor velor por mayor y menor a 6 meses y no por tiempo desde activación
 solicitudes %>% group_by(age_since_activation) %>% summarise(total=sum(X..Solicitudes)) %>% ggplot(aes(x=age_since_activation,y=total,label=total))+geom_histogram(stat = "identity",fill="lightblue")+geom_text()+geom_vline(xintercept = 33,linetype="dashed",colour="gray")+scale_x_continuous(n.breaks = 20)+labs(x="tiempo desde activación",y="solicitudes",title = "Número de solicitudes por tiempo de activación")
+
+solicitudes_5 %>% count(Grupo.edad)
 ```
 
 # Solicitudes por categoría
@@ -80,5 +83,8 @@ a<-colnames(timeline)[2:58]
 b<-timeline %>% pivot_longer(cols = a,names_to = "fecha",values_to = "valor") %>% filter(Agrupacion=="5 Estrellas > 6 meses")
 b$fecha<-as.Date(b$fecha) 
 
-plot(ts(data = b$valor))
+b %>% filter(fecha<"31-03-20")
+b[34:57,]
+
+plot(ts(data = b[34:57,]$valor))
 ```
