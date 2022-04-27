@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r data packages, message=FALSE, warning=FALSE, include=FALSE}
+```{r data_packages, message=FALSE, warning=FALSE, include=FALSE}
 library(readr)
 library(readxl)
 library(ggplot2)
@@ -35,7 +35,7 @@ library(gganimate)
 library(plotly)
 ```
 
-```{r data transformation, message=FALSE, warning=FALSE, include=FALSE}
+```{r data_transformation, message=FALSE, warning=FALSE, include=FALSE}
 
 tickets<-read_xls("~/Documentos/GitHub/LabJournalWebsite-master/PQRs_files/data/tickets_enero_20abril_aflore.xls",skip = 2)
 # como las fechas estan como carácteres y no date lo convertimos 
@@ -52,6 +52,7 @@ tickets<-tickets %>% filter(mes!="")
 
 # creando tablas resumen
 tickets_mes<-tickets %>% count(mes,Title) %>% pivot_wider(names_from = mes,values_from = n) %>% arrange(-`3`)
+
 ticket_comercial<-tickets %>% filter(Title %in% c("0001- Devolución de saldos por mayor valor pagado",
                                                   "0002 - Devolución de saldo de seguro",
                                                   "0003 - Inconsistencia con el pago de florines"  ,
@@ -77,18 +78,19 @@ ticket_comercial<-tickets %>% filter(Title %in% c("0001- Devolución de saldos p
                                                   "0057 - Problemas ARK o base de datos",
                                                   "0059 - Corregir Abono negativo a capital",
                                                   "0060 - Pago duplicado"  ))
-tickets_comercial_tabla<-ticket_comercial %>% count(mes,Title) %>% pivot_wider(names_from = mes,values_from = n) %>% arrange(-`3`)
+tickets_comercial_tabla<-ticket_comercial %>% count(Title) %>% arrange(-n)
+
 ```
 
 # Tickets por mes en todas las áreas
 
-```{r plot1, echo=FALSE, message=FALSE, warning=FALSE,fig.height=10,fig.width=10}
+```{r plot1, echo=FALSE, message=FALSE, warning=FALSE,fig.height=15,fig.width=10}
 # el title es mas completo que el subgrupo en cuanto a detalles, de preferencia usar el primero, brinda mas data
 # plot1<-tickets %>%  ggplot(aes(x=reorder(Title,Title,function(x)length(x))))+geom_bar()+coord_flip()+facet_grid(~mes)+labs(x="",y="conteo")
 # ggplotly(plot1)
 
 plot1<-tickets %>% count(mes,Title) %>% ggplot(aes(x=reorder(Title,n),y=n,fill=mes))+geom_bar(stat = "identity",position = "dodge2")+
-  coord_flip()+theme(legend.position = "none")+labs(x="",y="conteo")
+  coord_flip()+labs(x="",y="conteo")
 ggplotly(plot1)
 ```
 
@@ -98,9 +100,10 @@ ggplotly(plot1)
 
 # Tickets por mes en área comercial
 
-```{r plot2, echo=FALSE, message=FALSE, warning=FALSE}
+```{r plot2, echo=FALSE, message=FALSE, warning=FALSE,fig.height=10,fig.width=10}
 
-plot2<-ticket_comercial %>% count(mes,Title) %>% ggplot(aes(x=reorder(Title,n),y=n,fill=mes))+geom_bar(stat = "identity",position = "dodge2")+coord_flip()+labs(x="",y="conteo")+theme(legend.position = "none")
+plot2<-ticket_comercial %>% count(mes,Title) %>% ggplot(aes(x=reorder(Title,n),y=n,fill=mes))+geom_bar(stat = "identity",position = "dodge2")+coord_flip()+labs(x="",y="conteo")
 ggplotly(plot2)
-# kbl(tickets_comercial_tabla)
+
+tickets_comercial_tabla %>% kbl() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
