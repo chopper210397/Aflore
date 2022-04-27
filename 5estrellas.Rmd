@@ -1,19 +1,68 @@
 ---
 title: "Resources"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: false
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+editor_options: 
+  chunk_output_type: console
 ---
 
-### R and R-Studio
+# Requerimientos
 
-[R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [R-studio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux. Students will be learning R in the stats labs using the lab manual []().
+1.  Analizar por CV y en general
 
-### Additional R resources
+2.  Comparar entre periodo (1 y 20 de abril) y ver si desde 21 abril se ve un incremento en resultado 5 estrellas
 
-1. Google is great, Google your problem
-2. [Stackoverflow](https://stackoverflow.com) is great, google will often take you there because someone has already asked your question, and someone else has answered, usually many people have answered your question many ways.
-3. Danielle Navarro wrote a [free Psych Stats textbook using R](https://compcogscisydney.org/learning-statistics-with-r/), it's worth checking out (some of our textbook are based on Danielle's)
-4. I am currently writing another stats textbook (incorporating some of the above). You can read it while it's being made right here [https://crumplab.github.io/statistics/](https://crumplab.github.io/statistics/), also check out the lab manual for more specific things about doing various stats in R (also in draft right now) [https://crumplab.github.io/statisticsLab/](https://crumplab.github.io/statisticsLab/)
-5. Daniell Navarro recently made this website for introducing R, it's great, check it out (also made using this R markdown process): [http://compcogscisydney.org/psyr/](http://compcogscisydney.org/psyr/)
-6. Check out my slightly older programming book that also introduces R [https://crumplab.github.io/programmingforpsych/](https://crumplab.github.io/programmingforpsych/)
-7. This is the definitive guide for all things R Markdown (you will find this very useful as you get better at this skill): [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
+```{r setup, include=FALSE,fig.pos="H"}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
 
+```{r packages}
+library(tidyverse)
+library(readxl)
+library(readr)
+install.packages("gganimate")
+
+```
+
+```{r data manipulation, echo=FALSE, message=FALSE, warning=FALSE}
+solicitudes<-read.csv("~/Documentos/GitHub/LabJournalWebsite-master/docs/5estrellas_files/data/solicitudes_consejeros_1_20_abril.csv",sep=";")
+solicitudes$X..Solicitudes<-as.numeric(solicitudes$X..Solicitudes)
+solicitudes$aprobadas<-as.numeric(solicitudes$aprobadas)
+solicitudes$Desembolsadas<-as.numeric(solicitudes$Desembolsadas)
+solicitudes$Ticket.promedio<-parse_number(solicitudes$Ticket.promedio,locale = locale(decimal_mark=","))
+solicitudes$credit_amount<-parse_number(solicitudes$credit_amount,locale = locale(decimal_mark=","))
+
+solicitudes_5<-solicitudes %>% filter(Categoria.consejero=="5 Estrellas")
+
+solicitudes_5_consejero<-solicitudes_5 %>% group_by(advisor_name) %>% summarise(numero_solicitudes=sum(X..Solicitudes)) %>% arrange(-numero_solicitudes)
+
+```
+
+# Revisión solicitudes 1 al 20 de abril
+
+```{r plot1,fig.width=10,fig.height=10}
+solicitudes %>% group_by(age_since_activation) %>% summarise(total=sum(X..Solicitudes)) %>% ggplot(aes(x=age_since_activation,y=total,label=total))+geom_histogram(stat = "identity",fill="lightblue")+geom_text()+geom_vline(xintercept = 33,linetype="dashed",colour="gray")+scale_x_continuous(n.breaks = 20)+labs(x="tiempo desde activación",y="solicitudes",title = "Número de solicitudes por tiempo de activación")
+```
+
+# Solicitudes por categoría
+
+```{r graph visualization}
+solicitudes %>% group_by(Categoria.consejero) %>% summarise(total=sum(X..Solicitudes)) %>% arrange(-total) %>% ggplot(aes(x=reorder(Categoria.consejero,total),y=total,label=total))+geom_bar(stat = "identity")+coord_flip()+geom_text()+labs(x="",y="Total de solicitudes",title = "Numero de solicitudes por categoría 1-20 abril")
+```
+
+# Promedio de crédito por categoría
+
+```{r promedio ticket}
+# omitimos los NA para que no anulen el cálculo posterior
+solicitudes %>% na.omit(Ticket.promedio) %>% group_by(Categoria.consejero) %>% summarise(promedio_ticket=round( mean(Ticket.promedio)/1000000,digits = 2)) %>% arrange(-promedio_ticket) %>% ggplot(aes(x=reorder(Categoria.consejero,promedio_ticket),y=promedio_ticket,fill=promedio_ticket,label=promedio_ticket))+geom_bar(stat = "identity")+coord_flip()+labs(x="",y="Promedio de crédito en millones",title = "Promedio de crédito por categoría")+theme(legend.position = "none")+geom_text()
+```

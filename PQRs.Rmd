@@ -89,8 +89,8 @@ tickets_comercial_tabla<-ticket_comercial %>% count(Title) %>% arrange(-n)
 # plot1<-tickets %>%  ggplot(aes(x=reorder(Title,Title,function(x)length(x))))+geom_bar()+coord_flip()+facet_grid(~mes)+labs(x="",y="conteo")
 # ggplotly(plot1)
 
-plot1<-tickets %>% count(mes,Title) %>% ggplot(aes(x=reorder(Title,n),y=n,fill=mes))+geom_bar(stat = "identity",position = "dodge2")+
-  coord_flip()+labs(x="",y="conteo")
+plot1<-tickets %>% count(mes,Title) %>% ggplot(aes(x=reorder(Title,n),y=n,fill=factor(mes,levels=c("4","3","2","1"))))+geom_bar(stat = "identity",position = "dodge2")+
+  coord_flip()+labs(x="",y="conteo")+guides(fill=guide_legend(title="mes"))
 ggplotly(plot1)
 ```
 
@@ -102,7 +102,7 @@ ggplotly(plot1)
 
 ```{r plot2, echo=FALSE, message=FALSE, warning=FALSE,fig.height=10,fig.width=10}
 
-plot2<-ticket_comercial %>% count(mes,Title) %>% ggplot(aes(x=reorder(Title,n),y=n,fill=mes))+geom_bar(stat = "identity",position = "dodge2")+coord_flip()+labs(x="",y="conteo")
+plot2<-ticket_comercial %>% count(mes,Title) %>% ggplot(aes(x=reorder(Title,n),y=n,fill=factor(mes,levels=c("4","3","2","1"))))+geom_bar(stat = "identity",position = "dodge2")+coord_flip()+labs(x="",y="conteo")+guides(fill=guide_legend(title="mes"))
 ggplotly(plot2)
 
 tickets_comercial_tabla %>% kbl() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
@@ -113,10 +113,10 @@ ticket_comercial %>% count(Priority) %>% arrange(-n) %>% kbl() %>% kable_styling
 
 ticket_comercial %>% count(Tags) %>% arrange(-n) %>% kbl() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
-a<-ticket_comercial[!is.na(ticket_comercial$`Closed at`), ] 
+
 ```
 
-## Horas promedio de resolución de ticket por mes
+# Horas promedio de resolución de ticket por mes
 
 El cálculo se realiza hallando el tiempo que pasa entre la hora de creación del ticket y la hora en que se resuelve/cierra, los valores estan en horas.
 
@@ -127,6 +127,44 @@ El cálculo se realiza hallando el tiempo que pasa entre la hora de creación de
 
 ggplotly( ticket_comercial %>% group_by(mes) %>% summarise(dif_updated_closed=(`Updated at`- `Created at`)/3600) %>% arrange(-dif_updated_closed) %>% ggplot(aes(x=as.factor(mes),y=dif_updated_closed,fill=as.factor(mes)))+geom_boxplot()+theme(legend.position = "none")
 )
-          
-      
+
+# ticket_comercial %>% group_by(Title,mes) %>% summarise(dif_updated_closed=mean((`Updated at`- `Created at`)/3600)) %>% arrange(-dif_updated_closed) %>%
+#   filter(Title %in% c("0022 - Falla en el proceso de desembolso Digital" ,
+#                       "0009 - Derecho de petición",
+#                       "0017 - Mi Aflore - Consejero",
+#                       "0057 - Problemas ARK o base de datos",
+#                       "0018 - Mi Aflore - Cliente")) %>%
+#   ggplot(aes(x=reorder(Title,dif_updated_closed),y=dif_updated_closed,fill=mes))+geom_bar(stat = "identity",position = "dodge2")+coord_flip()
+
+
+```
+
+```{r boxplot_by_title,fig.width=10,fig.height=14}
+ggplotly(  ticket_comercial %>% group_by(Title) %>% summarise(dif_updated_closed=((`Updated at`- `Created at`)/3600)) %>% arrange(-dif_updated_closed) %>% ggplot(aes(x=Title,y=dif_updated_closed,fill=Title))+geom_boxplot()+theme(legend.position = "none")+coord_flip())
+
+```
+
+```{r plot4,fig.width=10,fig.height=14}
+ggplotly(ticket_comercial %>% group_by(Title,mes) %>% summarise(dif_updated_closed=median((`Updated at`- `Created at`)/3600)) %>% arrange(-dif_updated_closed) %>% ggplot(aes(x=reorder(Title,dif_updated_closed),y=dif_updated_closed,fill=factor(mes,levels=c("4","3","2","1"))))+geom_bar(stat = "identity",position = "dodge2")+coord_flip()+guides(fill=guide_legend(title="mes"))+labs(x="",y="horas promedio",title = "Horas promedio de resolución por tipo de ticket")
+)
+
+```
+
+# Tickets y tiempo por responsable
+
+```{r plot5}
+ggplotly(ticket_comercial %>% count(Customer,Owner) %>% arrange(-n) %>% pivot_longer(cols = c(Customer,Owner),names_to = "variable") %>%filter(value %in% c("Natalia Piedrahita","Luisa Moreno"  )) %>%  ggplot(aes(x=n,y=reorder(value,n),fill=variable))+geom_bar(stat = "identity",position = "dodge")+labs(x="numero de tickets",y="",title = "Número de tickets por responsable",caption = "ENERO a 21 ABRIL"))
+
+```
+
+```{r plot6,fig.height=8,fig.width=8}
+ticket_comercial %>% filter(Customer %in% c("Natalia Piedrahita","Luisa Moreno"  )) %>% group_by(Title,Customer) %>% summarise(dif_updated_closed=(median((`Updated at`- `Created at`)/3600))) %>% ggplot(aes(x=Title,y=dif_updated_closed,fill=Customer,label=round(dif_updated_closed)))+geom_bar(stat = "identity",position = "dodge2")+geom_text(position = position_dodge(width = .75))+coord_flip()+labs(x="",y="",title = "Horas promedio de resolución por tipo de ticket")
+```
+
+```{r plot7_tickets_dias_laborales}
+# ticket_comercial %>% filter(mes=="3") %>% filter(day(`Created at`) %in% c(1,2,3,4,7,8,9,10,11,14,15,16,17,18,21,22,23,24,25,28,29,30,31)) %>% count()
+# 
+# ticket_comercial %>% filter(mes=="3") %>% filter(!day(`Created at`) %in% c(1,2,3,4,7,8,9,10,11,14,15,16,17,18,22,23,24,25,28,29,30,31)) %>% count()
+
+
 ```
