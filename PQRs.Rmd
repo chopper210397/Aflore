@@ -106,4 +106,27 @@ plot2<-ticket_comercial %>% count(mes,Title) %>% ggplot(aes(x=reorder(Title,n),y
 ggplotly(plot2)
 
 tickets_comercial_tabla %>% kbl() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+ticket_comercial %>% count(Group) %>% arrange(-n)%>% kbl() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+ticket_comercial %>% count(Priority) %>% arrange(-n) %>% kbl() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+ticket_comercial %>% count(Tags) %>% arrange(-n) %>% kbl() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+a<-ticket_comercial[!is.na(ticket_comercial$`Closed at`), ] 
+```
+
+## Horas promedio de resolución de ticket por mes
+
+El cálculo se realiza hallando el tiempo que pasa entre la hora de creación del ticket y la hora en que se resuelve/cierra, los valores estan en horas.
+
+```{r table3}
+# updated at y closed at son prácticamente lo mismo asi que debo tomarlo como si fuesen la misma variable
+# a<-a %>% mutate(dif_created_closed=`Closed at`- `Created at`)
+# ticket_comercial %>% mutate(dif_updated_closed=(`Updated at`- `Created at`)/60) %>% ggplot(aes(x=dif_updated_closed))+geom_histogram()+facet_grid(~mes)
+
+ggplotly( ticket_comercial %>% group_by(mes) %>% summarise(dif_updated_closed=(`Updated at`- `Created at`)/3600) %>% arrange(-dif_updated_closed) %>% ggplot(aes(x=as.factor(mes),y=dif_updated_closed,fill=as.factor(mes)))+geom_boxplot()+theme(legend.position = "none")
+)
+          
+      
 ```
