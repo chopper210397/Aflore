@@ -30,12 +30,17 @@ knitr::opts_chunk$set(
 library(tidyverse)
 library(readxl)
 library(readr)
-install.packages("gganimate")
+library(dplyr)
+library(lubridate)
+library(tidyr)
+library(plotly)
+
 
 ```
 
 ```{r data manipulation, echo=FALSE, message=FALSE, warning=FALSE}
-solicitudes<-read.csv("~/Documentos/GitHub/LabJournalWebsite-master/docs/5estrellas_files/data/solicitudes_consejeros_1_20_abril.csv",sep=";")
+solicitudes<-read.csv("~/Documentos/GitHub/LabJournalWebsite-master/docs/solicitudes_consejeros_1_20_abril.csv",sep=";")
+timeline<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/5estrellas_files/solicitudes_5_1marzo_27abril.xlsx")
 solicitudes$X..Solicitudes<-as.numeric(solicitudes$X..Solicitudes)
 solicitudes$aprobadas<-as.numeric(solicitudes$aprobadas)
 solicitudes$Desembolsadas<-as.numeric(solicitudes$Desembolsadas)
@@ -65,4 +70,15 @@ solicitudes %>% group_by(Categoria.consejero) %>% summarise(total=sum(X..Solicit
 ```{r promedio ticket}
 # omitimos los NA para que no anulen el cálculo posterior
 solicitudes %>% na.omit(Ticket.promedio) %>% group_by(Categoria.consejero) %>% summarise(promedio_ticket=round( mean(Ticket.promedio)/1000000,digits = 2)) %>% arrange(-promedio_ticket) %>% ggplot(aes(x=reorder(Categoria.consejero,promedio_ticket),y=promedio_ticket,fill=promedio_ticket,label=promedio_ticket))+geom_bar(stat = "identity")+coord_flip()+labs(x="",y="Promedio de crédito en millones",title = "Promedio de crédito por categoría")+theme(legend.position = "none")+geom_text()
+```
+
+```{r plot5}
+# unique(solicitudes_5$advisor_name)
+# unique(solicitudes_5$advisor_id)
+a<-colnames(timeline)[2:58]
+
+b<-timeline %>% pivot_longer(cols = a,names_to = "fecha",values_to = "valor") %>% filter(Agrupacion=="5 Estrellas > 6 meses")
+b$fecha<-as.Date(b$fecha) 
+
+plot(ts(data = b$valor))
 ```
