@@ -39,9 +39,9 @@ library(plotly)
 ```
 
 ```{r data manipulation, echo=FALSE, message=FALSE, warning=FALSE}
-solicitudes<-read.csv("~/Documentos/GitHub/LabJournalWebsite-master/docs/solicitudes_consejeros_1_20_abril.csv",sep=";")
-timeline<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/solicitudes_5_1abril_27abril.xlsx")
-solicitudes_gest_com<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/solicitudes_con_gest_com.xlsx")
+solicitudes<-read.csv("~/GitHub/Aflore/docs/solicitudes_consejeros_1_20_abril.csv",sep=";")
+timeline<-read_xlsx("~/GitHub/Aflore/docs/solicitudes_5_1abril_27abril.xlsx")
+solicitudes_gest_com<-read_xlsx("~/GitHub/Aflore/docs/solicitudes_con_gest_com.xlsx")
 solicitudes$X..Solicitudes<-as.numeric(solicitudes$X..Solicitudes)
 solicitudes$aprobadas<-as.numeric(solicitudes$aprobadas)
 solicitudes$Desembolsadas<-as.numeric(solicitudes$Desembolsadas)
@@ -60,7 +60,7 @@ solicitudes_5_consejero<-solicitudes_5 %>% group_by(advisor_name) %>% summarise(
 # mejor velor por mayor y menor a 6 meses y no por tiempo desde activación
 solicitudes %>% group_by(age_since_activation) %>% summarise(total=sum(X..Solicitudes)) %>% ggplot(aes(x=age_since_activation,y=total,label=total))+geom_histogram(stat = "identity",fill="lightblue")+geom_text()+geom_vline(xintercept = 33,linetype="dashed",colour="gray")+scale_x_continuous(n.breaks = 20)+labs(x="tiempo desde activación",y="solicitudes",title = "Número de solicitudes por tiempo de activación")
 
-solicitudes_5 %>% count(Grupo.edad)
+# solicitudes_5 %>% count(Grupo.edad)
 ```
 
 # Solicitudes por categoría
@@ -94,4 +94,6 @@ ggplotly(b %>% ggplot(aes(x=fecha,y=valor))+geom_line())
 
 En los días de semana santa se ve una caída en el número de solicitudes para 5 estrellas, esta tendencia se revierte para el lunes 18 y 19 de abril, a partir del 20 se vuelven a caer el número de solicitudes hasta el día 26 que vuelven a subir los valores.
 
-# 
+```{r solicitudes_gestion_comercial}
+ggplotly( solicitudes_gest_com %>% count(as.Date(created_at)) %>% ggplot(aes(x=`as.Date(created_at)`,y=n))+geom_line() )
+```
