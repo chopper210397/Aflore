@@ -41,6 +41,7 @@ library(plotly)
 ```{r data manipulation, echo=FALSE, message=FALSE, warning=FALSE}
 solicitudes<-read.csv("~/Documentos/GitHub/LabJournalWebsite-master/docs/solicitudes_consejeros_1_20_abril.csv",sep=";")
 timeline<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/solicitudes_5_1abril_27abril.xlsx")
+solicitudes_gest_com<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/solicitudes_con_gest_com.xlsx")
 solicitudes$X..Solicitudes<-as.numeric(solicitudes$X..Solicitudes)
 solicitudes$aprobadas<-as.numeric(solicitudes$aprobadas)
 solicitudes$Desembolsadas<-as.numeric(solicitudes$Desembolsadas)
