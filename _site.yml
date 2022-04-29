@@ -8,4 +8,6 @@ navbar:
       href: PQRs.html
     - text: "5 Estrellas"
       href: 5estrellas.html
+    - text: "Impacto contacto efectivo"
+      href: contactoefectivo.html
 output_dir: "docs"
