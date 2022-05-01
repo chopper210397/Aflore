@@ -28,28 +28,38 @@ library(plotly)
 ```
 
 ```{r reading}
-contactoefectivo<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/contactoefectivo.xlsx")
+contactoefectivo<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/contactoefectivo1.xlsx")
 sologestioncomercial<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/sologestioncomercial.xlsx")
 
 ```
 
-# Gestión comercial por mes
+# Gestión comercial por mes en "actividad" por CV
 
 ```{r gestioncomercial}
+sologestioncomercial<-sologestioncomercial %>% filter(`Razon O Base`=="Actividad")
 sologestioncomercial<-sologestioncomercial %>% mutate(year=year(Timestamp))
 sologestioncomercial<-sologestioncomercial %>% mutate(mes=month(Timestamp))
-sologestioncomercial %>% filter(year==2022) %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+
+sologestioncomercial %>% filter(year==2022) %>% count(mes) %>% ggplot(aes(x=mes,y=n/9,label=round(n/9)))+
   geom_bar(stat = "identity",fill="lightblue")+geom_text()
+
+# sologestioncomercial %>% filter(year=="2022")  %>% count(`¿se Debe Reangedar Con El Consejero?`) %>% arrange(-n) 
+
+borrower_profile<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/borrower_profile.xlsx")
+borrower_profile %>% count(Status) %>% arrange(-n)
 ```
 
 # Prestamos con gestión comercial por mes
 
 ```{r data_transformation}
 prestamosporgestion<-contactoefectivo %>% dplyr::distinct(borrower_id,.keep_all = TRUE)
-prestamosporgestion<-prestamosporgestion %>% mutate(year=year(Timestamp))
-prestamosporgestion<-prestamosporgestion %>% mutate(mes=month(Timestamp))
-ggplotly(prestamosporgestion %>% filter(year==2022) %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text())
+prestamosporgestion1<-prestamosporgestion %>% mutate(year=year(Timestamp))
+prestamosporgestion1<-prestamosporgestion1 %>% mutate(mes=month(Timestamp))
+ggplotly(prestamosporgestion1 %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text())+labs(x=)
+# probando con las fechas de created at y no de timestamp
 
+prestamosporgestion<-prestamosporgestion %>% mutate(year=year(created_at))
+prestamosporgestion<-prestamosporgestion %>% mutate(mes=month(created_at))
+ggplotly(prestamosporgestion %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text())
 # nueva transformación
 prestamosporgestion$total_months_from_activation[prestamosporgestion$total_months_from_activation>6]<-"Mayor 6 meses"
 prestamosporgestion$total_months_from_activation[prestamosporgestion$total_months_from_activation<7]<-"Menor o igual 6 meses"
@@ -70,3 +80,5 @@ prestamosporgestion %>% filter(year==2022)  %>% count(mes,total_months_from_acti
 ```{r asdasd}
 prestamosporgestion %>% count(total_months_from_activation)
 ```
+
+# Agenda pendiente:
