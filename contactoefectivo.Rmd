@@ -28,7 +28,7 @@ library(plotly)
 ```
 
 ```{r reading}
-contactoefectivo<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/contactoefectivo1.xlsx")
+contactoefectivo<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/contactoefectivo2.xlsx")
 sologestioncomercial<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/sologestioncomercial.xlsx")
 
 ```
@@ -45,40 +45,58 @@ sologestioncomercial %>% filter(year==2022) %>% count(mes) %>% ggplot(aes(x=mes,
 # sologestioncomercial %>% filter(year=="2022")  %>% count(`¿se Debe Reangedar Con El Consejero?`) %>% arrange(-n) 
 
 borrower_profile<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/borrower_profile.xlsx")
-borrower_profile %>% count(Status) %>% arrange(-n)
+
+# %>% filter(Status=="Aprobado") 
+borrower_profile %>% count(`Suggested Product`) %>% arrange(-n) 
 ```
 
-# Prestamos con gestión comercial por mes
+# Prestamos con gestión comercial por mes (aprobados)
 
 ```{r data_transformation}
 prestamosporgestion<-contactoefectivo %>% dplyr::distinct(borrower_id,.keep_all = TRUE)
 prestamosporgestion1<-prestamosporgestion %>% mutate(year=year(Timestamp))
 prestamosporgestion1<-prestamosporgestion1 %>% mutate(mes=month(Timestamp))
-ggplotly(prestamosporgestion1 %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text())+labs(x=)
+ggplotly(prestamosporgestion1 %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text()+labs(title = "Tomando la fecha del timestamp (fecha de la gestión comercial)"))
+
 # probando con las fechas de created at y no de timestamp
+prestamosporgestion2<-prestamosporgestion %>% mutate(year=year(created_at))
+prestamosporgestion2<-prestamosporgestion2 %>% mutate(mes=month(created_at))
+ggplotly(prestamosporgestion2 %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text()+labs(title = "Tomando la fecha del created at (borrower profile)"))
 
-prestamosporgestion<-prestamosporgestion %>% mutate(year=year(created_at))
-prestamosporgestion<-prestamosporgestion %>% mutate(mes=month(created_at))
-ggplotly(prestamosporgestion %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text())
-# nueva transformación
-prestamosporgestion$total_months_from_activation[prestamosporgestion$total_months_from_activation>6]<-"Mayor 6 meses"
-prestamosporgestion$total_months_from_activation[prestamosporgestion$total_months_from_activation<7]<-"Menor o igual 6 meses"
+# probanndo con las fechas de updated at del borrower profile
+prestamosporgestion3<-prestamosporgestion %>% mutate(year=year(updated_at))
+prestamosporgestion3<-prestamosporgestion3 %>% mutate(mes=month(updated_at))
+ggplotly(prestamosporgestion3 %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text()+labs(title = "Tomando la fecha del updated at (borrower profile)"))
 
+# AGRUPANDO POR MAYOR A 6 MESES O MENOR/IGUAL A 6 MESES
+# prestamosporgestion1$total_months_from_activation[prestamosporgestion1$total_months_from_activation>6]<-"Mayor 6 meses"
+# prestamosporgestion1$total_months_from_activation[prestamosporgestion1$total_months_from_activation<7]<-"Menor o igual 6 meses"
 
+prestamosporgestion1$total_months_from_activation<-ifelse(prestamosporgestion1$total_months_from_activation>6,"Mayor 6 meses",ifelse(prestamosporgestion1$total_months_from_activation<7,"Menor o igual 6 meses","NA"))
 
 ```
 
-# Cantidad de contactos efectivos por categoría
+# Cantidad de contactos efectivos por categoría(aprobados)
 
 Dividiendo entre mayor y menor o igual a 6 meses
 
 ```{r sadsda}
-prestamosporgestion %>% filter(year==2022)  %>% count(mes,total_months_from_activation) %>% 
+prestamosporgestion1 %>% filter(status=="Aprobado") %>%  filter(year==2022)  %>% count(mes,total_months_from_activation) %>% 
   ggplot(aes(x=mes,y=n,fill=total_months_from_activation,label=n))+geom_bar(stat = "identity",position = "dodge")+geom_text(position = position_dodge(width = .75))
+
+na_months_aprobado<-prestamosporgestion1 %>% filter(status=="Aprobado") %>%filter(year==2022) %>% filter(!total_months_from_activation %in% c("Mayor 6 meses","Menor o igual 6 meses"))
+
+prestamosporgestion1 %>% filter(status=="Aprobado") %>%filter(year==2022) %>% filter(total_months_from_activation %in% c("Mayor 6 meses")) %>% count(cluster_segment) %>% arrange(-n)
+
+prestamosporgestion1 %>% filter(status=="Aprobado") %>%filter(year==2022) %>% filter(total_months_from_activation %in% c("Menor o igual 6 meses")) %>% count(cluster_segment) %>% arrange(-n)
+
+prestamosporgestion1 %>% filter(status=="Aprobado") %>%filter(year==2022) %>% filter(!total_months_from_activation %in% c("Mayor 6 meses","Menor o igual 6 meses")) %>% count(cluster_segment) %>% arrange(-n)
 ```
 
+Los NA en total months from activation con status de credito aprobado(extraido de borrower profile) tienen una estrella o NA en cluster segment (categorización por estrellas)
+
 ```{r asdasd}
-prestamosporgestion %>% count(total_months_from_activation)
+prestamosporgestion1 %>% count(total_months_from_activation)
 ```
 
 # Agenda pendiente:

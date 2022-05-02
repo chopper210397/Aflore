@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 	echo = FALSE,
 	message = FALSE,
 	warning = FALSE, 
-	cache=TRUE
+	cache=FALSE
 )
 ```
 
-```{r data_packages, message=FALSE, warning=FALSE, include=FALSE}
+```{r data_package, message=FALSE, warning=FALSE, include=FALSE}
 library(readr)
 library(readxl)
 library(ggplot2)
@@ -31,8 +31,8 @@ library(kableExtra)
 library(lubridate)
 library(forcats)
 library(stringr)
-library(gganimate)
 library(plotly)
+#
 ```
 
 ```{r data_transformation, message=FALSE, warning=FALSE, include=FALSE}
