@@ -50,7 +50,7 @@ sologestioncomercial<-sologestioncomercial %>% filter(`Razon O Base`=="Actividad
 sologestioncomercial<-sologestioncomercial %>% mutate(year=year(Timestamp))
 sologestioncomercial<-sologestioncomercial %>% mutate(mes=month(Timestamp))
 sologestioncomercial %>% filter(year==2022) %>% count(mes) %>% ggplot(aes(x=mes,y=n/9,label=round(n/9)))+
-  geom_bar(stat = "identity",fill="lightblue")+geom_text()
+  geom_bar(stat = "identity",fill="lightblue")+geom_text()+labs(y="Promedio de gestiones por CV")
 
 # sologestioncomercial %>% filter(year=="2022")  %>% count(`¿se Debe Reangedar Con El Consejero?`) %>% arrange(-n) 
 
@@ -60,7 +60,7 @@ borrower_profile<-read_xlsx("borrower_profile.xlsx")
 #borrower_profile %>% count(`Suggested Product`) %>% arrange(-n) 
 ```
 
-# Desembolsos, aprobaciones y solicitudes por mes (mayor y menor 6 juntos)
+# Desembolsos, aprobaciones y solicitudes por mes (\> y =\< 6 juntos) - Clientes Nuevos
 
 Existe una disminución o impacto negativo para el último mes en los créditos aprobados, desembolsos y solicitudes.
 
@@ -80,20 +80,21 @@ tableau_creditos$Valores.de.medidas<-as.numeric(gsub(",", ".",tableau_creditos$V
 
 # tableau_creditos %>% filter(Nombres.de.medidas!="Monto desembolsado en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,color=Nombres.de.medidas))+geom_line()
 
-ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Aprobadas en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,color=Nombres.de.medidas))+geom_line())
+```
 
+```{r solicitudesra}
+ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Solicitudes enviadas")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,label=Valores.de.medidas))+geom_line(color="blue")+geom_text()+labs(y="Solicitudes enviadas"))
+```
 
+```{r creditosra}
+ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Aprobadas en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,label=Valores.de.medidas))+geom_line(color="red")+geom_text()+labs(y="Créditos aprobados en el mes"))
 ```
 
 ```{r desembolso}
-ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Desembolsos en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,color=Nombres.de.medidas))+geom_line())
+ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Desembolsos en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,label=Valores.de.medidas))+geom_line(color="green")+geom_text()+labs(y="Desembolsos en el mes"))
 ```
 
-```{r sdaaa}
-ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Solicitudes enviadas")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,color=Nombres.de.medidas))+geom_line())
-```
-
-# Desembolsos y aprobaciones por mes (mayor y menor 6 separados)
+# Desembolsos y aprobaciones por mes (\> y =\< 6 separados) Clientes Nuevos
 
 ## Solicitudes enviadas
 
@@ -114,7 +115,7 @@ ggplotly(eneroabriledades %>% filter(variables %in% c("Consejeros enviando 1-6",
                                                       "Desembolsos en el mes 1-6",
                                                       "Desembolsos en el mes > 6",
                                                       "Consejeros con crédito en el mes 1-6",
-                                                      "Consejeros con crédito en el mes > 6"))  %>%  ggplot(aes(x=mes,y=valor,color=variables))+geom_line())
+                                                      "Consejeros con crédito en el mes > 6"))  %>%  ggplot(aes(x=mes,y=valor,color=variables,label=valor))+geom_line()+geom_text())
 ```
 
 ## Promedios
@@ -129,10 +130,12 @@ ggplotly(eneroabriledades %>% filter(!variables %in% c("Consejeros enviando 1-6"
                                                       "Solicitudes enviadas 1-6",
                                                       "Solicitudes enviadas > 6",
                                                       "% Aprobación decididas mes > 6",
-                                                      "% Aprobación decididas mes"))  %>%  ggplot(aes(x=mes,y=valor,color=variables))+geom_line())
+                                                      "% Aprobación decididas mes"))  %>%  ggplot(aes(x=mes,y=valor,color=variables,label=round(valor,digits = 2)))+geom_line()+geom_text(color="black"))
 ```
 
 ## Correlación
+
+Existe una correlación positiva entre el numero de gestiones y el número de solicitudes para edad (mayor a 6 meses)
 
 ```{r correlation}
 a<-sologestioncomercial %>% filter(year==2022) %>% count(mes) 
@@ -142,6 +145,24 @@ colnames(correlation)[2:3]<-c("gestiones","solicitudes_mayor_6")
 
 cor(correlation$gestiones,correlation$solicitudes_mayor_6)
 ```
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
 
 # Agenda pendiente:
 

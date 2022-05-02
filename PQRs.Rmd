@@ -37,7 +37,7 @@ library(plotly)
 
 ```{r data_transformation, message=FALSE, warning=FALSE, include=FALSE}
 
-# tickets<-read_xls("tickets_enero_20abril_aflore.xls",skip = 2)
+tickets<-read_xls("tickets_enero_20abril_aflore.xls",skip = 2)
 # como las fechas estan como carácteres y no date lo convertimos 
 tickets$`Created at`<-parse_datetime(tickets$`Created at`)
 tickets$`Updated at`<-parse_datetime(tickets$`Updated at`)
