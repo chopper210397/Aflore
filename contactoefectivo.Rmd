@@ -138,7 +138,9 @@ ggplotly(eneroabriledades %>% filter(!variables %in% c("Consejeros enviando 1-6"
 ## Analizando por \> y =\< 6 meses
 
 ```{r}
-
+renovaciones<-read_xlsx("renovaciones.xlsx")
+renovaciones %>% filter(variable=="Aptos")  %>% ggplot(aes(x=mes,y=valor,color=variable))+geom_line()
+renovaciones %>% filter(variable!="Aptos") %>% ggplot(aes(x=mes,y=valor,color=variable))+geom_line()
 ```
 
 ## Correlación
