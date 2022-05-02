@@ -94,7 +94,7 @@ ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Aprobadas en el mes")%
 ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Desembolsos en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,label=Valores.de.medidas))+geom_line(color="green")+geom_text()+labs(y="Desembolsos en el mes"))
 ```
 
-# Desembolsos y aprobaciones por mes (\> y =\< 6 separados) Clientes Nuevos
+# Desembolsos y aprobaciones por mes (\> y =\< 6 separados) - Clientes Nuevos
 
 ## Solicitudes enviadas
 
@@ -131,6 +131,14 @@ ggplotly(eneroabriledades %>% filter(!variables %in% c("Consejeros enviando 1-6"
                                                       "Solicitudes enviadas > 6",
                                                       "% Aprobación decididas mes > 6",
                                                       "% Aprobación decididas mes"))  %>%  ggplot(aes(x=mes,y=valor,color=variables,label=round(valor,digits = 2)))+geom_line()+geom_text(color="black"))
+```
+
+# Renovación
+
+## Analizando por \> y =\< 6 meses
+
+```{r}
+
 ```
 
 ## Correlación
