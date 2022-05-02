@@ -28,12 +28,20 @@ library(plotly)
 ```
 
 ```{r reading}
-contactoefectivo<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/contactoefectivo2.xlsx")
-sologestioncomercial<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/sologestioncomercial.xlsx")
+contactoefectivo<-read_xlsx("contactoefectivo2.xlsx")
+sologestioncomercial<-read_xlsx("sologestioncomercial.xlsx")
 
 ```
 
+# Abstract:
+
+Se observa un quiebre (impacto negativo) en la tendencia de las distintas variables medidas tanto en conjunto (\> 6 meses, =\< 6 meses) como por separado para el mes de abril, esto posiblemente debido a una disminución en las gestiones realizadas en el último mes.
+
+# Desarrollo:
+
 # Gestión comercial por mes en "actividad" por CV
+
+Se observa una disminución en el número de gestiones efectivas (actividad) por Coordinador Virtual respecto al mes pasado.
 
 ```{r gestioncomercial}
 sologestioncomercial<-sologestioncomercial %>% filter(`Razon O Base`=="Actividad")
@@ -44,11 +52,98 @@ sologestioncomercial %>% filter(year==2022) %>% count(mes) %>% ggplot(aes(x=mes,
 
 # sologestioncomercial %>% filter(year=="2022")  %>% count(`¿se Debe Reangedar Con El Consejero?`) %>% arrange(-n) 
 
-borrower_profile<-read_xlsx("~/Documentos/GitHub/LabJournalWebsite-master/docs/borrower_profile.xlsx")
+borrower_profile<-read_xlsx("borrower_profile.xlsx")
 
 # %>% filter(Status=="Aprobado") 
-borrower_profile %>% count(`Suggested Product`) %>% arrange(-n) 
+#borrower_profile %>% count(`Suggested Product`) %>% arrange(-n) 
 ```
+
+# Desembolsos, aprobaciones y solicitudes por mes (mayor y menor 6 juntos)
+
+Existe una disminución o impacto negativo para el último mes en los créditos aprobados, desembolsos y solicitudes.
+
+```{r datatableau_creditos}
+enero<-read.csv("tableau_enero.csv",sep = ";")
+febrero<-read.csv("tableau_febrero.csv",sep = ";")
+marzo<-read.csv("tableau_marzo.csv",sep = ";")
+abril<-read.csv("tableau_abril.csv",sep = ";")
+
+enero<-enero %>% mutate(mes=1)
+febrero<-febrero %>% mutate(mes=2)
+marzo<-marzo %>% mutate(mes=3)
+abril<-abril %>% mutate(mes=4)
+
+tableau_creditos<-rbind(enero,febrero,marzo,abril)
+tableau_creditos$Valores.de.medidas<-as.numeric(gsub(",", ".",tableau_creditos$Valores.de.medidas ))
+
+# tableau_creditos %>% filter(Nombres.de.medidas!="Monto desembolsado en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,color=Nombres.de.medidas))+geom_line()
+
+ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Aprobadas en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,color=Nombres.de.medidas))+geom_line())
+
+
+```
+
+```{r desembolso}
+ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Desembolsos en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,color=Nombres.de.medidas))+geom_line())
+```
+
+```{r sdaaa}
+ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Solicitudes enviadas")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,color=Nombres.de.medidas))+geom_line())
+```
+
+# Desembolsos y aprobaciones por mes (mayor y menor 6 separados)
+
+## Solicitudes enviadas
+
+```{r datatableau_creditos_separado}
+eneroabriledades<-read_xlsx("edadeneroabril.xlsx")
+
+ggplotly(eneroabriledades %>% filter(variables %in% c("Solicitudes enviadas 1-6",
+                                                      "Solicitudes enviadas > 6")) %>%
+           ggplot(aes(x=mes,y=valor,color=variables,label=valor))+geom_line()+geom_text(color="black"))
+
+```
+
+## Resto variables
+
+```{r datatableau_rest}
+ggplotly(eneroabriledades %>% filter(variables %in% c("Consejeros enviando 1-6",
+                                                      "Consejeros enviando > 6",
+                                                      "Desembolsos en el mes 1-6",
+                                                      "Desembolsos en el mes > 6",
+                                                      "Consejeros con crédito en el mes 1-6",
+                                                      "Consejeros con crédito en el mes > 6"))  %>%  ggplot(aes(x=mes,y=valor,color=variables))+geom_line())
+```
+
+## Promedios
+
+```{r datatableau_rest2}
+ggplotly(eneroabriledades %>% filter(!variables %in% c("Consejeros enviando 1-6",
+                                                      "Consejeros enviando > 6",
+                                                      "Desembolsos en el mes 1-6",
+                                                      "Desembolsos en el mes > 6",
+                                                      "Consejeros con crédito en el mes 1-6",
+                                                      "Consejeros con crédito en el mes > 6",
+                                                      "Solicitudes enviadas 1-6",
+                                                      "Solicitudes enviadas > 6",
+                                                      "% Aprobación decididas mes > 6",
+                                                      "% Aprobación decididas mes"))  %>%  ggplot(aes(x=mes,y=valor,color=variables))+geom_line())
+```
+
+## Correlación
+
+```{r correlation}
+a<-sologestioncomercial %>% filter(year==2022) %>% count(mes) 
+b<-eneroabriledades %>% filter(variables %in% c("Solicitudes enviadas > 6")) %>% select(mes,valor)
+correlation<-a %>% left_join(b)
+colnames(correlation)[2:3]<-c("gestiones","solicitudes_mayor_6")
+
+cor(correlation$gestiones,correlation$solicitudes_mayor_6)
+```
+
+# Agenda pendiente:
+
+Realizar más pruebas para evaluar la veracidad o falsedad de los cálculos siguientes
 
 # Prestamos con gestión comercial por mes (aprobados)
 
@@ -98,5 +193,3 @@ Los NA en total months from activation con status de credito aprobado(extraido d
 ```{r asdasd}
 prestamosporgestion1 %>% count(total_months_from_activation)
 ```
-
-# Agenda pendiente:

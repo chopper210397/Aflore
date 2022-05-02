@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Resources</title>
+
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Aflore</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="PQRs.html">PQR'S</a>
+</li>
+<li>
+  <a href="5estrellas.html">5 Estrellas</a>
+</li>
+<li>
+  <a href="contactoefectivo.html">Impacto contacto efectivo</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Resources</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#requerimientos">Requerimientos</a></li>
+<li><a href="#revisión-solicitudes-1-al-20-de-abril">Revisión
+solicitudes 1 al 20 de abril</a></li>
+<li><a href="#solicitudes-por-categoría">Solicitudes por
+categoría</a></li>
+<li><a href="#promedio-de-crédito-por-categoría">Promedio de crédito por
+categoría</a></li>
+<li><a href="#loan-prestamos">Loan (prestamos)</a></li>
+<li><a href="#solicitudes">Solicitudes</a></li>
+</ul>
+</div>
+
+<div id="requerimientos" class="section level1">
+<h1>Requerimientos</h1>
+<ol style="list-style-type: decimal">
+<li><p>Analizar por CV y en general</p></li>
+<li><p>Comparar entre periodo (1 y 20 de abril) y ver si desde 21 abril
+se ve un incremento en resultado 5 estrellas</p></li>
+</ol>
+</div>
+<div id="revisión-solicitudes-1-al-20-de-abril" class="section level1">
+<h1>Revisión solicitudes 1 al 20 de abril</h1>
+<p><img src="5estrellas_files/figure-html/plot1-1.png" width="960" /></p>
+</div>
+<div id="solicitudes-por-categoría" class="section level1">
+<h1>Solicitudes por categoría</h1>
+<p><img src="5estrellas_files/figure-html/graph%20visualization-1.png" width="672" /></p>
+</div>
+<div id="promedio-de-crédito-por-categoría" class="section level1">
+<h1>Promedio de crédito por categoría</h1>
+<p><img src="5estrellas_files/figure-html/promedio%20ticket-1.png" width="672" /></p>
+<div id="htmlwidget-e5d2fa2a5df9509158dd" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e5d2fa2a5df9509158dd">{"x":{"data":[{"x":[-719053,-718688,-718323,-717957,-717592,-717227,-716862,-716496,-716131,-715766,-715401,-715035,-714670,-714305,-713940,-713574,-713209,-712844,-712479,-712113,-711748,-711383,-711018,-710652,-710287,-709922],"y":[14,6,4,20,15,16,19,22,6,7,17,14,14,6,2,1,2,15,15,5,4,3,2,2,2,3],"text":["fecha: 1-04-20<br />valor: 14","fecha: 2-04-20<br />valor:  6","fecha: 3-04-20<br />valor:  4","fecha: 4-04-20<br />valor: 20","fecha: 5-04-20<br />valor: 15","fecha: 6-04-20<br />valor: 16","fecha: 7-04-20<br />valor: 19","fecha: 8-04-20<br />valor: 22","fecha: 9-04-20<br />valor:  6","fecha: 10-04-20<br />valor:  7","fecha: 11-04-20<br />valor: 17","fecha: 12-04-20<br />valor: 14","fecha: 13-04-20<br />valor: 14","fecha: 14-04-20<br />valor:  6","fecha: 15-04-20<br />valor:  2","fecha: 16-04-20<br />valor:  1","fecha: 17-04-20<br />valor:  2","fecha: 18-04-20<br />valor: 15","fecha: 19-04-20<br />valor: 15","fecha: 20-04-20<br />valor:  5","fecha: 21-04-20<br />valor:  4","fecha: 22-04-20<br />valor:  3","fecha: 23-04-20<br />valor:  2","fecha: 24-04-20<br />valor:  2","fecha: 25-04-20<br />valor:  2","fecha: 26-04-20<br />valor:  3"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-719509.55,-709465.45],"tickmode":"array","ticktext":["5","10","15","20","25"],"tickvals":[-717701,-715875,-714049,-712223,-710396],"categoryorder":"array","categoryarray":["5","10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"fecha","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.05,23.05],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,5,10,15,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"valor","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"6cbf105472be":{"x":{},"y":{},"type":"scatter"}},"cur_data":"6cbf105472be","visdat":{"6cbf105472be":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>En los días de semana santa se ve una caída en el número de
+solicitudes para 5 estrellas, esta tendencia se revierte para el lunes
+18 y 19 de abril, a partir del 20 se vuelven a caer el número de
+solicitudes hasta el día 26 que vuelven a subir los valores.</p>
+<div id="htmlwidget-616b429ff88fb1130748" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-616b429ff88fb1130748">{"x":{"data":[{"x":[18389,18393,18408,18415,18416,18417,18418,18422,18423,18425,18428,18430,18437,18438,18440,18444,18445,18446,18447,18448,18449,18450,18451,18452,18453,18454,18455,18456,18457,18458,18459,18460,18461,18462,18463,18464,18465,18466,18467,18468,18469,18470,18471,18472,18473,18474,18475,18476,18477,18478,18479,18480,18481,18482,18483,18484,18485,18486,18487,18488,18489,18490,18491,18492,18493,18494,18495,18496,18497,18498,18499,18500,18501,18502,18503,18504,18505,18506,18507,18508,18509,18510,18511,18512,18513,18514,18515,18516,18517,18518,18519,18520,18521,18522,18523,18524,18525,18526,18527,18528,18529,18530,18531,18532,18533,18534,18535,18536,18537,18538,18539,18540,18541,18542,18543,18544,18545,18546,18547,18548,18549,18550,18551,18552,18553,18554,18555,18556,18557,18558,18559,18560,18561,18562,18563,18564,18565,18566,18567,18568,18569,18570,18571,18572,18573,18574,18575,18576,18577,18578,18579,18580,18581,18582,18583,18584,18585,18586,18587,18588,18589,18590,18591,18592,18593,18594,18595,18596,18597,18598,18599,18600,18601,18602,18603,18604,18605,18606,18607,18608,18609,18610,18611,18612,18613,18614,18615,18616,18617,18618,18619,18620,18621,18622,18623,18624,18625,18626,18627,18628,18629,18630,18631,18632,18633,18634,18635,18636,18637,18638,18639,18640,18641,18642,18643,18644,18645,18646,18647,18648,18649,18650,18651,18652,18653,18654,18655,18656,18657,18658,18659,18660,18661,18662,18663,18664,18665,18666,18667,18668,18669,18670,18671,18672,18673,18674,18675,18676,18677,18678,18679,18680,18681,18682,18683,18684,18685,18686,18687,18688,18689,18690,18691,18692,18693,18694,18695,18696,18697,18698,18699,18700,18701,18702,18703,18704,18705,18706,18707,18708,18709,18710,18711,18712,18713,18714,18715,18716,18717,18718,18719,18720,18721,18722,18723,18724,18725,18726,18727,18728,18729,18730,18731,18732,18733,18734,18735,18736,18737,18738,18739,18740,18741,18742,18743,18744,18745,18746,18747,18748,18749,18750,18751,18752,18753,18754,18755,18756,18757,18758,18759,18760,18761,18762,18763,18764,18765,18766,18767,18768,18769,18770,18771,18772,18773,18774,18775,18776,18777,18778,18779,18780,18781,18782,18783,18784,18785,18786,18787,18788,18789,18790,18791,18792,18793,18794,18795,18796,18797,18798,18799,18800,18801,18802,18803,18804,18805,18806,18807,18808,18809,18810,18811,18812,18813,18814,18815,18816,18817,18818,18819,18820,18821,18822,18823,18824,18825,18826,18827,18828,18829,18830,18831,18832,18833,18834,18835,18836,18837,18838,18839,18840,18841,18842,18843,18844,18845,18846,18847,18848,18849,18850,18851,18852,18853,18854,18855,18856,18857,18858,18859,18860,18861,18862,18863,18864,18865,18866,18867,18868,18869,18870,18871,18872,18873,18874,18875,18876,18877,18878,18879,18880,18881,18882,18883,18884,18885,18886,18887,18888,18889,18890,18891,18892,18893,18894,18895,18896,18897,18898,18899,18900,18901,18902,18903,18904,18905,18906,18907,18908,18909,18910,18911,18912,18913,18914,18915,18916,18917,18918,18919,18920,18921,18922,18923,18924,18925,18926,18927,18928,18929,18930,18931,18932,18933,18934,18935,18936,18937,18938,18939,18940,18941,18942,18943,18944,18945,18946,18947,18948,18949,18950,18951,18952,18953,18954,18955,18956,18957,18958,18959,18960,18961,18962,18963,18964,18965,18966,18967,18968,18969,18970,18971,18972,18973,18974,18975,18976,18977,18978,18979,18980,18981,18982,18983,18984,18985,18986,18987,18988,18989,18990,18991,18992,18993,18994,18995,18996,18997,18998,18999,19000,19001,19002,19003,19004,19005,19006,19007,19008,19009,19010,19011,19012,19013,19014,19015,19016,19017,19018,19019,19020,19021,19022,19023,19024,19025,19026,19027,19028,19029,19030,19031,19032,19033,19034,19036,19037,19038,19039,19040,19041,19042,19043,19044,19045,19046,19047,19048,19049,19050,19051,19052,19053,19054,19055,19056,19057,19058,19059,19060,19061,19062,19063,19064,19065,19066,19067,19068,19069,19070,19071,19072,19073,19074,19075,19076,19077,19078,19079,19080,19081,19082,19083,19084,19085,19086,19087,19088,19089,19090,19091,19092,19093,19094,19095,19096,19097,19098,19099,19100,19101,19102,19103,19104,19105,19106,19107,19108,19109],"y":[1,1,2,1,1,4,3,6,4,1,1,8,2,5,3,14,20,15,6,2,20,19,38,20,23,12,4,14,33,30,17,38,7,17,10,43,27,18,20,2,11,23,19,58,16,25,12,4,15,30,69,51,16,23,3,48,76,65,65,46,15,21,13,97,54,60,24,29,16,91,118,82,107,77,24,23,50,102,73,110,83,41,25,83,103,76,85,80,41,19,74,93,114,93,106,17,24,113,137,125,93,94,14,49,75,65,86,106,81,35,15,76,72,57,110,53,46,26,10,123,91,73,39,54,22,95,143,97,118,102,51,39,187,92,125,111,77,46,21,25,109,102,169,139,37,34,183,188,141,109,97,34,47,51,185,158,153,169,75,15,198,116,154,178,109,46,2,109,126,125,151,101,26,21,72,30,79,142,78,59,30,66,117,147,90,105,63,31,76,77,69,10,4,8,5,37,44,32,5,1,3,1,20,33,47,25,41,7,6,8,47,53,54,66,30,9,82,85,71,105,80,29,19,94,113,143,110,113,53,23,71,127,108,119,96,56,25,164,153,88,124,135,33,50,132,158,132,142,127,49,30,155,146,213,106,93,82,53,134,173,130,163,94,19,28,111,138,122,100,128,61,53,166,142,85,155,110,69,11,31,131,126,66,68,39,12,88,16,120,29,13,18,23,156,96,105,55,64,59,15,96,120,42,109,40,40,11,107,78,98,91,87,31,37,128,112,117,131,94,25,27,117,79,155,86,93,43,14,132,86,170,105,128,75,18,27,199,206,154,108,53,25,132,172,165,184,187,95,65,188,202,195,159,133,41,6,59,139,243,179,117,44,28,34,121,100,77,122,53,18,110,119,182,110,109,73,32,118,100,140,106,87,30,12,37,137,113,89,78,60,25,137,147,158,171,82,57,68,106,26,103,167,153,63,28,177,187,153,125,138,45,24,124,136,101,100,116,47,32,138,132,169,134,106,66,16,26,150,205,123,106,34,56,159,141,225,140,136,91,29,140,154,192,141,142,68,20,154,187,157,181,182,102,48,160,220,265,232,186,43,29,231,211,368,274,229,131,63,275,327,340,323,253,80,53,224,326,308,336,172,133,74,352,301,344,293,247,91,33,144,255,263,222,242,98,76,235,271,236,299,244,89,28,36,244,202,388,194,55,79,279,291,248,283,266,135,42,72,376,364,373,273,129,123,334,315,295,326,245,97,57,227,228,323,317,324,100,72,293,191,96,276,273,134,64,382,255,274,326,293,170,128,243,215,275,188,164,33,65,185,264,181,151,21,15,24,83,163,275,196,166,85,55,41,164,307,238,273,136,18,244,212,307,271,236,118,88,258,329,236,307,264,93,68,272,294,218,274,261,188,97,248,283,294,274,318,60,328,368,448,351,312,150,143,365,305,430,503,435,138,95,359,315,362,454,403,183,146,467,284,453,561,309,162,98,484,280,348,347,268,145,70,104,204,345,252,452,177,105,320,385,302,365,295,113,68,340,437,420,383,329,155,100,365,264,263,128,82,67,104,289,352,322,357,171,76,54,202,513,217],"text":["as.Date(created_at): 2020-05-07<br />n:   1","as.Date(created_at): 2020-05-11<br />n:   1","as.Date(created_at): 2020-05-26<br />n:   2","as.Date(created_at): 2020-06-02<br />n:   1","as.Date(created_at): 2020-06-03<br />n:   1","as.Date(created_at): 2020-06-04<br />n:   4","as.Date(created_at): 2020-06-05<br />n:   3","as.Date(created_at): 2020-06-09<br />n:   6","as.Date(created_at): 2020-06-10<br />n:   4","as.Date(created_at): 2020-06-12<br />n:   1","as.Date(created_at): 2020-06-15<br />n:   1","as.Date(created_at): 2020-06-17<br />n:   8","as.Date(created_at): 2020-06-24<br />n:   2","as.Date(created_at): 2020-06-25<br />n:   5","as.Date(created_at): 2020-06-27<br />n:   3","as.Date(created_at): 2020-07-01<br />n:  14","as.Date(created_at): 2020-07-02<br />n:  20","as.Date(created_at): 2020-07-03<br />n:  15","as.Date(created_at): 2020-07-04<br />n:   6","as.Date(created_at): 2020-07-05<br />n:   2","as.Date(created_at): 2020-07-06<br />n:  20","as.Date(created_at): 2020-07-07<br />n:  19","as.Date(created_at): 2020-07-08<br />n:  38","as.Date(created_at): 2020-07-09<br />n:  20","as.Date(created_at): 2020-07-10<br />n:  23","as.Date(created_at): 2020-07-11<br />n:  12","as.Date(created_at): 2020-07-12<br />n:   4","as.Date(created_at): 2020-07-13<br />n:  14","as.Date(created_at): 2020-07-14<br />n:  33","as.Date(created_at): 2020-07-15<br />n:  30","as.Date(created_at): 2020-07-16<br />n:  17","as.Date(created_at): 2020-07-17<br />n:  38","as.Date(created_at): 2020-07-18<br />n:   7","as.Date(created_at): 2020-07-19<br />n:  17","as.Date(created_at): 2020-07-20<br />n:  10","as.Date(created_at): 2020-07-21<br />n:  43","as.Date(created_at): 2020-07-22<br />n:  27","as.Date(created_at): 2020-07-23<br />n:  18","as.Date(created_at): 2020-07-24<br />n:  20","as.Date(created_at): 2020-07-25<br />n:   2","as.Date(created_at): 2020-07-26<br />n:  11","as.Date(created_at): 2020-07-27<br />n:  23","as.Date(created_at): 2020-07-28<br />n:  19","as.Date(created_at): 2020-07-29<br />n:  58","as.Date(created_at): 2020-07-30<br />n:  16","as.Date(created_at): 2020-07-31<br />n:  25","as.Date(created_at): 2020-08-01<br />n:  12","as.Date(created_at): 2020-08-02<br />n:   4","as.Date(created_at): 2020-08-03<br />n:  15","as.Date(created_at): 2020-08-04<br />n:  30","as.Date(created_at): 2020-08-05<br />n:  69","as.Date(created_at): 2020-08-06<br />n:  51","as.Date(created_at): 2020-08-07<br />n:  16","as.Date(created_at): 2020-08-08<br />n:  23","as.Date(created_at): 2020-08-09<br />n:   3","as.Date(created_at): 2020-08-10<br />n:  48","as.Date(created_at): 2020-08-11<br />n:  76","as.Date(created_at): 2020-08-12<br />n:  65","as.Date(created_at): 2020-08-13<br />n:  65","as.Date(created_at): 2020-08-14<br />n:  46","as.Date(created_at): 2020-08-15<br />n:  15","as.Date(created_at): 2020-08-16<br />n:  21","as.Date(created_at): 2020-08-17<br />n:  13","as.Date(created_at): 2020-08-18<br />n:  97","as.Date(created_at): 2020-08-19<br />n:  54","as.Date(created_at): 2020-08-20<br />n:  60","as.Date(created_at): 2020-08-21<br />n:  24","as.Date(created_at): 2020-08-22<br />n:  29","as.Date(created_at): 2020-08-23<br />n:  16","as.Date(created_at): 2020-08-24<br />n:  91","as.Date(created_at): 2020-08-25<br />n: 118","as.Date(created_at): 2020-08-26<br />n:  82","as.Date(created_at): 2020-08-27<br />n: 107","as.Date(created_at): 2020-08-28<br />n:  77","as.Date(created_at): 2020-08-29<br />n:  24","as.Date(created_at): 2020-08-30<br />n:  23","as.Date(created_at): 2020-08-31<br />n:  50","as.Date(created_at): 2020-09-01<br />n: 102","as.Date(created_at): 2020-09-02<br />n:  73","as.Date(created_at): 2020-09-03<br />n: 110","as.Date(created_at): 2020-09-04<br />n:  83","as.Date(created_at): 2020-09-05<br />n:  41","as.Date(created_at): 2020-09-06<br />n:  25","as.Date(created_at): 2020-09-07<br />n:  83","as.Date(created_at): 2020-09-08<br />n: 103","as.Date(created_at): 2020-09-09<br />n:  76","as.Date(created_at): 2020-09-10<br />n:  85","as.Date(created_at): 2020-09-11<br />n:  80","as.Date(created_at): 2020-09-12<br />n:  41","as.Date(created_at): 2020-09-13<br />n:  19","as.Date(created_at): 2020-09-14<br />n:  74","as.Date(created_at): 2020-09-15<br />n:  93","as.Date(created_at): 2020-09-16<br />n: 114","as.Date(created_at): 2020-09-17<br />n:  93","as.Date(created_at): 2020-09-18<br />n: 106","as.Date(created_at): 2020-09-19<br />n:  17","as.Date(created_at): 2020-09-20<br />n:  24","as.Date(created_at): 2020-09-21<br />n: 113","as.Date(created_at): 2020-09-22<br />n: 137","as.Date(created_at): 2020-09-23<br />n: 125","as.Date(created_at): 2020-09-24<br />n:  93","as.Date(created_at): 2020-09-25<br />n:  94","as.Date(created_at): 2020-09-26<br />n:  14","as.Date(created_at): 2020-09-27<br />n:  49","as.Date(created_at): 2020-09-28<br />n:  75","as.Date(created_at): 2020-09-29<br />n:  65","as.Date(created_at): 2020-09-30<br />n:  86","as.Date(created_at): 2020-10-01<br />n: 106","as.Date(created_at): 2020-10-02<br />n:  81","as.Date(created_at): 2020-10-03<br />n:  35","as.Date(created_at): 2020-10-04<br />n:  15","as.Date(created_at): 2020-10-05<br />n:  76","as.Date(created_at): 2020-10-06<br />n:  72","as.Date(created_at): 2020-10-07<br />n:  57","as.Date(created_at): 2020-10-08<br />n: 110","as.Date(created_at): 2020-10-09<br />n:  53","as.Date(created_at): 2020-10-10<br />n:  46","as.Date(created_at): 2020-10-11<br />n:  26","as.Date(created_at): 2020-10-12<br />n:  10","as.Date(created_at): 2020-10-13<br />n: 123","as.Date(created_at): 2020-10-14<br />n:  91","as.Date(created_at): 2020-10-15<br />n:  73","as.Date(created_at): 2020-10-16<br />n:  39","as.Date(created_at): 2020-10-17<br />n:  54","as.Date(created_at): 2020-10-18<br />n:  22","as.Date(created_at): 2020-10-19<br />n:  95","as.Date(created_at): 2020-10-20<br />n: 143","as.Date(created_at): 2020-10-21<br />n:  97","as.Date(created_at): 2020-10-22<br />n: 118","as.Date(created_at): 2020-10-23<br />n: 102","as.Date(created_at): 2020-10-24<br />n:  51","as.Date(created_at): 2020-10-25<br />n:  39","as.Date(created_at): 2020-10-26<br />n: 187","as.Date(created_at): 2020-10-27<br />n:  92","as.Date(created_at): 2020-10-28<br />n: 125","as.Date(created_at): 2020-10-29<br />n: 111","as.Date(created_at): 2020-10-30<br />n:  77","as.Date(created_at): 2020-10-31<br />n:  46","as.Date(created_at): 2020-11-01<br />n:  21","as.Date(created_at): 2020-11-02<br />n:  25","as.Date(created_at): 2020-11-03<br />n: 109","as.Date(created_at): 2020-11-04<br />n: 102","as.Date(created_at): 2020-11-05<br />n: 169","as.Date(created_at): 2020-11-06<br />n: 139","as.Date(created_at): 2020-11-07<br />n:  37","as.Date(created_at): 2020-11-08<br />n:  34","as.Date(created_at): 2020-11-09<br />n: 183","as.Date(created_at): 2020-11-10<br />n: 188","as.Date(created_at): 2020-11-11<br />n: 141","as.Date(created_at): 2020-11-12<br />n: 109","as.Date(created_at): 2020-11-13<br />n:  97","as.Date(created_at): 2020-11-14<br />n:  34","as.Date(created_at): 2020-11-15<br />n:  47","as.Date(created_at): 2020-11-16<br />n:  51","as.Date(created_at): 2020-11-17<br />n: 185","as.Date(created_at): 2020-11-18<br />n: 158","as.Date(created_at): 2020-11-19<br />n: 153","as.Date(created_at): 2020-11-20<br />n: 169","as.Date(created_at): 2020-11-21<br />n:  75","as.Date(created_at): 2020-11-22<br />n:  15","as.Date(created_at): 2020-11-23<br />n: 198","as.Date(created_at): 2020-11-24<br />n: 116","as.Date(created_at): 2020-11-25<br />n: 154","as.Date(created_at): 2020-11-26<br />n: 178","as.Date(created_at): 2020-11-27<br />n: 109","as.Date(created_at): 2020-11-28<br />n:  46","as.Date(created_at): 2020-11-29<br />n:   2","as.Date(created_at): 2020-11-30<br />n: 109","as.Date(created_at): 2020-12-01<br />n: 126","as.Date(created_at): 2020-12-02<br />n: 125","as.Date(created_at): 2020-12-03<br />n: 151","as.Date(created_at): 2020-12-04<br />n: 101","as.Date(created_at): 2020-12-05<br />n:  26","as.Date(created_at): 2020-12-06<br />n:  21","as.Date(created_at): 2020-12-07<br />n:  72","as.Date(created_at): 2020-12-08<br />n:  30","as.Date(created_at): 2020-12-09<br />n:  79","as.Date(created_at): 2020-12-10<br />n: 142","as.Date(created_at): 2020-12-11<br />n:  78","as.Date(created_at): 2020-12-12<br />n:  59","as.Date(created_at): 2020-12-13<br />n:  30","as.Date(created_at): 2020-12-14<br />n:  66","as.Date(created_at): 2020-12-15<br />n: 117","as.Date(created_at): 2020-12-16<br />n: 147","as.Date(created_at): 2020-12-17<br />n:  90","as.Date(created_at): 2020-12-18<br />n: 105","as.Date(created_at): 2020-12-19<br />n:  63","as.Date(created_at): 2020-12-20<br />n:  31","as.Date(created_at): 2020-12-21<br />n:  76","as.Date(created_at): 2020-12-22<br />n:  77","as.Date(created_at): 2020-12-23<br />n:  69","as.Date(created_at): 2020-12-24<br />n:  10","as.Date(created_at): 2020-12-25<br />n:   4","as.Date(created_at): 2020-12-26<br />n:   8","as.Date(created_at): 2020-12-27<br />n:   5","as.Date(created_at): 2020-12-28<br />n:  37","as.Date(created_at): 2020-12-29<br />n:  44","as.Date(created_at): 2020-12-30<br />n:  32","as.Date(created_at): 2020-12-31<br />n:   5","as.Date(created_at): 2021-01-01<br />n:   1","as.Date(created_at): 2021-01-02<br />n:   3","as.Date(created_at): 2021-01-03<br />n:   1","as.Date(created_at): 2021-01-04<br />n:  20","as.Date(created_at): 2021-01-05<br />n:  33","as.Date(created_at): 2021-01-06<br />n:  47","as.Date(created_at): 2021-01-07<br />n:  25","as.Date(created_at): 2021-01-08<br />n:  41","as.Date(created_at): 2021-01-09<br />n:   7","as.Date(created_at): 2021-01-10<br />n:   6","as.Date(created_at): 2021-01-11<br />n:   8","as.Date(created_at): 2021-01-12<br />n:  47","as.Date(created_at): 2021-01-13<br />n:  53","as.Date(created_at): 2021-01-14<br />n:  54","as.Date(created_at): 2021-01-15<br />n:  66","as.Date(created_at): 2021-01-16<br />n:  30","as.Date(created_at): 2021-01-17<br />n:   9","as.Date(created_at): 2021-01-18<br />n:  82","as.Date(created_at): 2021-01-19<br />n:  85","as.Date(created_at): 2021-01-20<br />n:  71","as.Date(created_at): 2021-01-21<br />n: 105","as.Date(created_at): 2021-01-22<br />n:  80","as.Date(created_at): 2021-01-23<br />n:  29","as.Date(created_at): 2021-01-24<br />n:  19","as.Date(created_at): 2021-01-25<br />n:  94","as.Date(created_at): 2021-01-26<br />n: 113","as.Date(created_at): 2021-01-27<br />n: 143","as.Date(created_at): 2021-01-28<br />n: 110","as.Date(created_at): 2021-01-29<br />n: 113","as.Date(created_at): 2021-01-30<br />n:  53","as.Date(created_at): 2021-01-31<br />n:  23","as.Date(created_at): 2021-02-01<br />n:  71","as.Date(created_at): 2021-02-02<br />n: 127","as.Date(created_at): 2021-02-03<br />n: 108","as.Date(created_at): 2021-02-04<br />n: 119","as.Date(created_at): 2021-02-05<br />n:  96","as.Date(created_at): 2021-02-06<br />n:  56","as.Date(created_at): 2021-02-07<br />n:  25","as.Date(created_at): 2021-02-08<br />n: 164","as.Date(created_at): 2021-02-09<br />n: 153","as.Date(created_at): 2021-02-10<br />n:  88","as.Date(created_at): 2021-02-11<br />n: 124","as.Date(created_at): 2021-02-12<br />n: 135","as.Date(created_at): 2021-02-13<br />n:  33","as.Date(created_at): 2021-02-14<br />n:  50","as.Date(created_at): 2021-02-15<br />n: 132","as.Date(created_at): 2021-02-16<br />n: 158","as.Date(created_at): 2021-02-17<br />n: 132","as.Date(created_at): 2021-02-18<br />n: 142","as.Date(created_at): 2021-02-19<br />n: 127","as.Date(created_at): 2021-02-20<br />n:  49","as.Date(created_at): 2021-02-21<br />n:  30","as.Date(created_at): 2021-02-22<br />n: 155","as.Date(created_at): 2021-02-23<br />n: 146","as.Date(created_at): 2021-02-24<br />n: 213","as.Date(created_at): 2021-02-25<br />n: 106","as.Date(created_at): 2021-02-26<br />n:  93","as.Date(created_at): 2021-02-27<br />n:  82","as.Date(created_at): 2021-02-28<br />n:  53","as.Date(created_at): 2021-03-01<br />n: 134","as.Date(created_at): 2021-03-02<br />n: 173","as.Date(created_at): 2021-03-03<br />n: 130","as.Date(created_at): 2021-03-04<br />n: 163","as.Date(created_at): 2021-03-05<br />n:  94","as.Date(created_at): 2021-03-06<br />n:  19","as.Date(created_at): 2021-03-07<br />n:  28","as.Date(created_at): 2021-03-08<br />n: 111","as.Date(created_at): 2021-03-09<br />n: 138","as.Date(created_at): 2021-03-10<br />n: 122","as.Date(created_at): 2021-03-11<br />n: 100","as.Date(created_at): 2021-03-12<br />n: 128","as.Date(created_at): 2021-03-13<br />n:  61","as.Date(created_at): 2021-03-14<br />n:  53","as.Date(created_at): 2021-03-15<br />n: 166","as.Date(created_at): 2021-03-16<br />n: 142","as.Date(created_at): 2021-03-17<br />n:  85","as.Date(created_at): 2021-03-18<br />n: 155","as.Date(created_at): 2021-03-19<br />n: 110","as.Date(created_at): 2021-03-20<br />n:  69","as.Date(created_at): 2021-03-21<br />n:  11","as.Date(created_at): 2021-03-22<br />n:  31","as.Date(created_at): 2021-03-23<br />n: 131","as.Date(created_at): 2021-03-24<br />n: 126","as.Date(created_at): 2021-03-25<br />n:  66","as.Date(created_at): 2021-03-26<br />n:  68","as.Date(created_at): 2021-03-27<br />n:  39","as.Date(created_at): 2021-03-28<br />n:  12","as.Date(created_at): 2021-03-29<br />n:  88","as.Date(created_at): 2021-03-30<br />n:  16","as.Date(created_at): 2021-03-31<br />n: 120","as.Date(created_at): 2021-04-01<br />n:  29","as.Date(created_at): 2021-04-02<br />n:  13","as.Date(created_at): 2021-04-03<br />n:  18","as.Date(created_at): 2021-04-04<br />n:  23","as.Date(created_at): 2021-04-05<br />n: 156","as.Date(created_at): 2021-04-06<br />n:  96","as.Date(created_at): 2021-04-07<br />n: 105","as.Date(created_at): 2021-04-08<br />n:  55","as.Date(created_at): 2021-04-09<br />n:  64","as.Date(created_at): 2021-04-10<br />n:  59","as.Date(created_at): 2021-04-11<br />n:  15","as.Date(created_at): 2021-04-12<br />n:  96","as.Date(created_at): 2021-04-13<br />n: 120","as.Date(created_at): 2021-04-14<br />n:  42","as.Date(created_at): 2021-04-15<br />n: 109","as.Date(created_at): 2021-04-16<br />n:  40","as.Date(created_at): 2021-04-17<br />n:  40","as.Date(created_at): 2021-04-18<br />n:  11","as.Date(created_at): 2021-04-19<br />n: 107","as.Date(created_at): 2021-04-20<br />n:  78","as.Date(created_at): 2021-04-21<br />n:  98","as.Date(created_at): 2021-04-22<br />n:  91","as.Date(created_at): 2021-04-23<br />n:  87","as.Date(created_at): 2021-04-24<br />n:  31","as.Date(created_at): 2021-04-25<br />n:  37","as.Date(created_at): 2021-04-26<br />n: 128","as.Date(created_at): 2021-04-27<br />n: 112","as.Date(created_at): 2021-04-28<br />n: 117","as.Date(created_at): 2021-04-29<br />n: 131","as.Date(created_at): 2021-04-30<br />n:  94","as.Date(created_at): 2021-05-01<br />n:  25","as.Date(created_at): 2021-05-02<br />n:  27","as.Date(created_at): 2021-05-03<br />n: 117","as.Date(created_at): 2021-05-04<br />n:  79","as.Date(created_at): 2021-05-05<br />n: 155","as.Date(created_at): 2021-05-06<br />n:  86","as.Date(created_at): 2021-05-07<br />n:  93","as.Date(created_at): 2021-05-08<br />n:  43","as.Date(created_at): 2021-05-09<br />n:  14","as.Date(created_at): 2021-05-10<br />n: 132","as.Date(created_at): 2021-05-11<br />n:  86","as.Date(created_at): 2021-05-12<br />n: 170","as.Date(created_at): 2021-05-13<br />n: 105","as.Date(created_at): 2021-05-14<br />n: 128","as.Date(created_at): 2021-05-15<br />n:  75","as.Date(created_at): 2021-05-16<br />n:  18","as.Date(created_at): 2021-05-17<br />n:  27","as.Date(created_at): 2021-05-18<br />n: 199","as.Date(created_at): 2021-05-19<br />n: 206","as.Date(created_at): 2021-05-20<br />n: 154","as.Date(created_at): 2021-05-21<br />n: 108","as.Date(created_at): 2021-05-22<br />n:  53","as.Date(created_at): 2021-05-23<br />n:  25","as.Date(created_at): 2021-05-24<br />n: 132","as.Date(created_at): 2021-05-25<br />n: 172","as.Date(created_at): 2021-05-26<br />n: 165","as.Date(created_at): 2021-05-27<br />n: 184","as.Date(created_at): 2021-05-28<br />n: 187","as.Date(created_at): 2021-05-29<br />n:  95","as.Date(created_at): 2021-05-30<br />n:  65","as.Date(created_at): 2021-05-31<br />n: 188","as.Date(created_at): 2021-06-01<br />n: 202","as.Date(created_at): 2021-06-02<br />n: 195","as.Date(created_at): 2021-06-03<br />n: 159","as.Date(created_at): 2021-06-04<br />n: 133","as.Date(created_at): 2021-06-05<br />n:  41","as.Date(created_at): 2021-06-06<br />n:   6","as.Date(created_at): 2021-06-07<br />n:  59","as.Date(created_at): 2021-06-08<br />n: 139","as.Date(created_at): 2021-06-09<br />n: 243","as.Date(created_at): 2021-06-10<br />n: 179","as.Date(created_at): 2021-06-11<br />n: 117","as.Date(created_at): 2021-06-12<br />n:  44","as.Date(created_at): 2021-06-13<br />n:  28","as.Date(created_at): 2021-06-14<br />n:  34","as.Date(created_at): 2021-06-15<br />n: 121","as.Date(created_at): 2021-06-16<br />n: 100","as.Date(created_at): 2021-06-17<br />n:  77","as.Date(created_at): 2021-06-18<br />n: 122","as.Date(created_at): 2021-06-19<br />n:  53","as.Date(created_at): 2021-06-20<br />n:  18","as.Date(created_at): 2021-06-21<br />n: 110","as.Date(created_at): 2021-06-22<br />n: 119","as.Date(created_at): 2021-06-23<br />n: 182","as.Date(created_at): 2021-06-24<br />n: 110","as.Date(created_at): 2021-06-25<br />n: 109","as.Date(created_at): 2021-06-26<br />n:  73","as.Date(created_at): 2021-06-27<br />n:  32","as.Date(created_at): 2021-06-28<br />n: 118","as.Date(created_at): 2021-06-29<br />n: 100","as.Date(created_at): 2021-06-30<br />n: 140","as.Date(created_at): 2021-07-01<br />n: 106","as.Date(created_at): 2021-07-02<br />n:  87","as.Date(created_at): 2021-07-03<br />n:  30","as.Date(created_at): 2021-07-04<br />n:  12","as.Date(created_at): 2021-07-05<br />n:  37","as.Date(created_at): 2021-07-06<br />n: 137","as.Date(created_at): 2021-07-07<br />n: 113","as.Date(created_at): 2021-07-08<br />n:  89","as.Date(created_at): 2021-07-09<br />n:  78","as.Date(created_at): 2021-07-10<br />n:  60","as.Date(created_at): 2021-07-11<br />n:  25","as.Date(created_at): 2021-07-12<br />n: 137","as.Date(created_at): 2021-07-13<br />n: 147","as.Date(created_at): 2021-07-14<br />n: 158","as.Date(created_at): 2021-07-15<br />n: 171","as.Date(created_at): 2021-07-16<br />n:  82","as.Date(created_at): 2021-07-17<br />n:  57","as.Date(created_at): 2021-07-18<br />n:  68","as.Date(created_at): 2021-07-19<br />n: 106","as.Date(created_at): 2021-07-20<br />n:  26","as.Date(created_at): 2021-07-21<br />n: 103","as.Date(created_at): 2021-07-22<br />n: 167","as.Date(created_at): 2021-07-23<br />n: 153","as.Date(created_at): 2021-07-24<br />n:  63","as.Date(created_at): 2021-07-25<br />n:  28","as.Date(created_at): 2021-07-26<br />n: 177","as.Date(created_at): 2021-07-27<br />n: 187","as.Date(created_at): 2021-07-28<br />n: 153","as.Date(created_at): 2021-07-29<br />n: 125","as.Date(created_at): 2021-07-30<br />n: 138","as.Date(created_at): 2021-07-31<br />n:  45","as.Date(created_at): 2021-08-01<br />n:  24","as.Date(created_at): 2021-08-02<br />n: 124","as.Date(created_at): 2021-08-03<br />n: 136","as.Date(created_at): 2021-08-04<br />n: 101","as.Date(created_at): 2021-08-05<br />n: 100","as.Date(created_at): 2021-08-06<br />n: 116","as.Date(created_at): 2021-08-07<br />n:  47","as.Date(created_at): 2021-08-08<br />n:  32","as.Date(created_at): 2021-08-09<br />n: 138","as.Date(created_at): 2021-08-10<br />n: 132","as.Date(created_at): 2021-08-11<br />n: 169","as.Date(created_at): 2021-08-12<br />n: 134","as.Date(created_at): 2021-08-13<br />n: 106","as.Date(created_at): 2021-08-14<br />n:  66","as.Date(created_at): 2021-08-15<br />n:  16","as.Date(created_at): 2021-08-16<br />n:  26","as.Date(created_at): 2021-08-17<br />n: 150","as.Date(created_at): 2021-08-18<br />n: 205","as.Date(created_at): 2021-08-19<br />n: 123","as.Date(created_at): 2021-08-20<br />n: 106","as.Date(created_at): 2021-08-21<br />n:  34","as.Date(created_at): 2021-08-22<br />n:  56","as.Date(created_at): 2021-08-23<br />n: 159","as.Date(created_at): 2021-08-24<br />n: 141","as.Date(created_at): 2021-08-25<br />n: 225","as.Date(created_at): 2021-08-26<br />n: 140","as.Date(created_at): 2021-08-27<br />n: 136","as.Date(created_at): 2021-08-28<br />n:  91","as.Date(created_at): 2021-08-29<br />n:  29","as.Date(created_at): 2021-08-30<br />n: 140","as.Date(created_at): 2021-08-31<br />n: 154","as.Date(created_at): 2021-09-01<br />n: 192","as.Date(created_at): 2021-09-02<br />n: 141","as.Date(created_at): 2021-09-03<br />n: 142","as.Date(created_at): 2021-09-04<br />n:  68","as.Date(created_at): 2021-09-05<br />n:  20","as.Date(created_at): 2021-09-06<br />n: 154","as.Date(created_at): 2021-09-07<br />n: 187","as.Date(created_at): 2021-09-08<br />n: 157","as.Date(created_at): 2021-09-09<br />n: 181","as.Date(created_at): 2021-09-10<br />n: 182","as.Date(created_at): 2021-09-11<br />n: 102","as.Date(created_at): 2021-09-12<br />n:  48","as.Date(created_at): 2021-09-13<br />n: 160","as.Date(created_at): 2021-09-14<br />n: 220","as.Date(created_at): 2021-09-15<br />n: 265","as.Date(created_at): 2021-09-16<br />n: 232","as.Date(created_at): 2021-09-17<br />n: 186","as.Date(created_at): 2021-09-18<br />n:  43","as.Date(created_at): 2021-09-19<br />n:  29","as.Date(created_at): 2021-09-20<br />n: 231","as.Date(created_at): 2021-09-21<br />n: 211","as.Date(created_at): 2021-09-22<br />n: 368","as.Date(created_at): 2021-09-23<br />n: 274","as.Date(created_at): 2021-09-24<br />n: 229","as.Date(created_at): 2021-09-25<br />n: 131","as.Date(created_at): 2021-09-26<br />n:  63","as.Date(created_at): 2021-09-27<br />n: 275","as.Date(created_at): 2021-09-28<br />n: 327","as.Date(created_at): 2021-09-29<br />n: 340","as.Date(created_at): 2021-09-30<br />n: 323","as.Date(created_at): 2021-10-01<br />n: 253","as.Date(created_at): 2021-10-02<br />n:  80","as.Date(created_at): 2021-10-03<br />n:  53","as.Date(created_at): 2021-10-04<br />n: 224","as.Date(created_at): 2021-10-05<br />n: 326","as.Date(created_at): 2021-10-06<br />n: 308","as.Date(created_at): 2021-10-07<br />n: 336","as.Date(created_at): 2021-10-08<br />n: 172","as.Date(created_at): 2021-10-09<br />n: 133","as.Date(created_at): 2021-10-10<br />n:  74","as.Date(created_at): 2021-10-11<br />n: 352","as.Date(created_at): 2021-10-12<br />n: 301","as.Date(created_at): 2021-10-13<br />n: 344","as.Date(created_at): 2021-10-14<br />n: 293","as.Date(created_at): 2021-10-15<br />n: 247","as.Date(created_at): 2021-10-16<br />n:  91","as.Date(created_at): 2021-10-17<br />n:  33","as.Date(created_at): 2021-10-18<br />n: 144","as.Date(created_at): 2021-10-19<br />n: 255","as.Date(created_at): 2021-10-20<br />n: 263","as.Date(created_at): 2021-10-21<br />n: 222","as.Date(created_at): 2021-10-22<br />n: 242","as.Date(created_at): 2021-10-23<br />n:  98","as.Date(created_at): 2021-10-24<br />n:  76","as.Date(created_at): 2021-10-25<br />n: 235","as.Date(created_at): 2021-10-26<br />n: 271","as.Date(created_at): 2021-10-27<br />n: 236","as.Date(created_at): 2021-10-28<br />n: 299","as.Date(created_at): 2021-10-29<br />n: 244","as.Date(created_at): 2021-10-30<br />n:  89","as.Date(created_at): 2021-10-31<br />n:  28","as.Date(created_at): 2021-11-01<br />n:  36","as.Date(created_at): 2021-11-02<br />n: 244","as.Date(created_at): 2021-11-03<br />n: 202","as.Date(created_at): 2021-11-04<br />n: 388","as.Date(created_at): 2021-11-05<br />n: 194","as.Date(created_at): 2021-11-06<br />n:  55","as.Date(created_at): 2021-11-07<br />n:  79","as.Date(created_at): 2021-11-08<br />n: 279","as.Date(created_at): 2021-11-09<br />n: 291","as.Date(created_at): 2021-11-10<br />n: 248","as.Date(created_at): 2021-11-11<br />n: 283","as.Date(created_at): 2021-11-12<br />n: 266","as.Date(created_at): 2021-11-13<br />n: 135","as.Date(created_at): 2021-11-14<br />n:  42","as.Date(created_at): 2021-11-15<br />n:  72","as.Date(created_at): 2021-11-16<br />n: 376","as.Date(created_at): 2021-11-17<br />n: 364","as.Date(created_at): 2021-11-18<br />n: 373","as.Date(created_at): 2021-11-19<br />n: 273","as.Date(created_at): 2021-11-20<br />n: 129","as.Date(created_at): 2021-11-21<br />n: 123","as.Date(created_at): 2021-11-22<br />n: 334","as.Date(created_at): 2021-11-23<br />n: 315","as.Date(created_at): 2021-11-24<br />n: 295","as.Date(created_at): 2021-11-25<br />n: 326","as.Date(created_at): 2021-11-26<br />n: 245","as.Date(created_at): 2021-11-27<br />n:  97","as.Date(created_at): 2021-11-28<br />n:  57","as.Date(created_at): 2021-11-29<br />n: 227","as.Date(created_at): 2021-11-30<br />n: 228","as.Date(created_at): 2021-12-01<br />n: 323","as.Date(created_at): 2021-12-02<br />n: 317","as.Date(created_at): 2021-12-03<br />n: 324","as.Date(created_at): 2021-12-04<br />n: 100","as.Date(created_at): 2021-12-05<br />n:  72","as.Date(created_at): 2021-12-06<br />n: 293","as.Date(created_at): 2021-12-07<br />n: 191","as.Date(created_at): 2021-12-08<br />n:  96","as.Date(created_at): 2021-12-09<br />n: 276","as.Date(created_at): 2021-12-10<br />n: 273","as.Date(created_at): 2021-12-11<br />n: 134","as.Date(created_at): 2021-12-12<br />n:  64","as.Date(created_at): 2021-12-13<br />n: 382","as.Date(created_at): 2021-12-14<br />n: 255","as.Date(created_at): 2021-12-15<br />n: 274","as.Date(created_at): 2021-12-16<br />n: 326","as.Date(created_at): 2021-12-17<br />n: 293","as.Date(created_at): 2021-12-18<br />n: 170","as.Date(created_at): 2021-12-19<br />n: 128","as.Date(created_at): 2021-12-20<br />n: 243","as.Date(created_at): 2021-12-21<br />n: 215","as.Date(created_at): 2021-12-22<br />n: 275","as.Date(created_at): 2021-12-23<br />n: 188","as.Date(created_at): 2021-12-24<br />n: 164","as.Date(created_at): 2021-12-25<br />n:  33","as.Date(created_at): 2021-12-26<br />n:  65","as.Date(created_at): 2021-12-27<br />n: 185","as.Date(created_at): 2021-12-28<br />n: 264","as.Date(created_at): 2021-12-29<br />n: 181","as.Date(created_at): 2021-12-30<br />n: 151","as.Date(created_at): 2021-12-31<br />n:  21","as.Date(created_at): 2022-01-01<br />n:  15","as.Date(created_at): 2022-01-02<br />n:  24","as.Date(created_at): 2022-01-03<br />n:  83","as.Date(created_at): 2022-01-04<br />n: 163","as.Date(created_at): 2022-01-05<br />n: 275","as.Date(created_at): 2022-01-06<br />n: 196","as.Date(created_at): 2022-01-07<br />n: 166","as.Date(created_at): 2022-01-08<br />n:  85","as.Date(created_at): 2022-01-09<br />n:  55","as.Date(created_at): 2022-01-10<br />n:  41","as.Date(created_at): 2022-01-11<br />n: 164","as.Date(created_at): 2022-01-12<br />n: 307","as.Date(created_at): 2022-01-13<br />n: 238","as.Date(created_at): 2022-01-14<br />n: 273","as.Date(created_at): 2022-01-15<br />n: 136","as.Date(created_at): 2022-01-16<br />n:  18","as.Date(created_at): 2022-01-17<br />n: 244","as.Date(created_at): 2022-01-18<br />n: 212","as.Date(created_at): 2022-01-19<br />n: 307","as.Date(created_at): 2022-01-20<br />n: 271","as.Date(created_at): 2022-01-21<br />n: 236","as.Date(created_at): 2022-01-22<br />n: 118","as.Date(created_at): 2022-01-23<br />n:  88","as.Date(created_at): 2022-01-24<br />n: 258","as.Date(created_at): 2022-01-25<br />n: 329","as.Date(created_at): 2022-01-26<br />n: 236","as.Date(created_at): 2022-01-27<br />n: 307","as.Date(created_at): 2022-01-28<br />n: 264","as.Date(created_at): 2022-01-29<br />n:  93","as.Date(created_at): 2022-01-30<br />n:  68","as.Date(created_at): 2022-01-31<br />n: 272","as.Date(created_at): 2022-02-01<br />n: 294","as.Date(created_at): 2022-02-02<br />n: 218","as.Date(created_at): 2022-02-03<br />n: 274","as.Date(created_at): 2022-02-04<br />n: 261","as.Date(created_at): 2022-02-05<br />n: 188","as.Date(created_at): 2022-02-06<br />n:  97","as.Date(created_at): 2022-02-07<br />n: 248","as.Date(created_at): 2022-02-08<br />n: 283","as.Date(created_at): 2022-02-09<br />n: 294","as.Date(created_at): 2022-02-10<br />n: 274","as.Date(created_at): 2022-02-11<br />n: 318","as.Date(created_at): 2022-02-13<br />n:  60","as.Date(created_at): 2022-02-14<br />n: 328","as.Date(created_at): 2022-02-15<br />n: 368","as.Date(created_at): 2022-02-16<br />n: 448","as.Date(created_at): 2022-02-17<br />n: 351","as.Date(created_at): 2022-02-18<br />n: 312","as.Date(created_at): 2022-02-19<br />n: 150","as.Date(created_at): 2022-02-20<br />n: 143","as.Date(created_at): 2022-02-21<br />n: 365","as.Date(created_at): 2022-02-22<br />n: 305","as.Date(created_at): 2022-02-23<br />n: 430","as.Date(created_at): 2022-02-24<br />n: 503","as.Date(created_at): 2022-02-25<br />n: 435","as.Date(created_at): 2022-02-26<br />n: 138","as.Date(created_at): 2022-02-27<br />n:  95","as.Date(created_at): 2022-02-28<br />n: 359","as.Date(created_at): 2022-03-01<br />n: 315","as.Date(created_at): 2022-03-02<br />n: 362","as.Date(created_at): 2022-03-03<br />n: 454","as.Date(created_at): 2022-03-04<br />n: 403","as.Date(created_at): 2022-03-05<br />n: 183","as.Date(created_at): 2022-03-06<br />n: 146","as.Date(created_at): 2022-03-07<br />n: 467","as.Date(created_at): 2022-03-08<br />n: 284","as.Date(created_at): 2022-03-09<br />n: 453","as.Date(created_at): 2022-03-10<br />n: 561","as.Date(created_at): 2022-03-11<br />n: 309","as.Date(created_at): 2022-03-12<br />n: 162","as.Date(created_at): 2022-03-13<br />n:  98","as.Date(created_at): 2022-03-14<br />n: 484","as.Date(created_at): 2022-03-15<br />n: 280","as.Date(created_at): 2022-03-16<br />n: 348","as.Date(created_at): 2022-03-17<br />n: 347","as.Date(created_at): 2022-03-18<br />n: 268","as.Date(created_at): 2022-03-19<br />n: 145","as.Date(created_at): 2022-03-20<br />n:  70","as.Date(created_at): 2022-03-21<br />n: 104","as.Date(created_at): 2022-03-22<br />n: 204","as.Date(created_at): 2022-03-23<br />n: 345","as.Date(created_at): 2022-03-24<br />n: 252","as.Date(created_at): 2022-03-25<br />n: 452","as.Date(created_at): 2022-03-26<br />n: 177","as.Date(created_at): 2022-03-27<br />n: 105","as.Date(created_at): 2022-03-28<br />n: 320","as.Date(created_at): 2022-03-29<br />n: 385","as.Date(created_at): 2022-03-30<br />n: 302","as.Date(created_at): 2022-03-31<br />n: 365","as.Date(created_at): 2022-04-01<br />n: 295","as.Date(created_at): 2022-04-02<br />n: 113","as.Date(created_at): 2022-04-03<br />n:  68","as.Date(created_at): 2022-04-04<br />n: 340","as.Date(created_at): 2022-04-05<br />n: 437","as.Date(created_at): 2022-04-06<br />n: 420","as.Date(created_at): 2022-04-07<br />n: 383","as.Date(created_at): 2022-04-08<br />n: 329","as.Date(created_at): 2022-04-09<br />n: 155","as.Date(created_at): 2022-04-10<br />n: 100","as.Date(created_at): 2022-04-11<br />n: 365","as.Date(created_at): 2022-04-12<br />n: 264","as.Date(created_at): 2022-04-13<br />n: 263","as.Date(created_at): 2022-04-14<br />n: 128","as.Date(created_at): 2022-04-15<br />n:  82","as.Date(created_at): 2022-04-16<br />n:  67","as.Date(created_at): 2022-04-17<br />n: 104","as.Date(created_at): 2022-04-18<br />n: 289","as.Date(created_at): 2022-04-19<br />n: 352","as.Date(created_at): 2022-04-20<br />n: 322","as.Date(created_at): 2022-04-21<br />n: 357","as.Date(created_at): 2022-04-22<br />n: 171","as.Date(created_at): 2022-04-23<br />n:  76","as.Date(created_at): 2022-04-24<br />n:  54","as.Date(created_at): 2022-04-25<br />n: 202","as.Date(created_at): 2022-04-26<br />n: 513","as.Date(created_at): 2022-04-27<br />n: 217"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":43.1050228310502},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[18353,19145],"tickmode":"array","ticktext":["2020-07","2021-01","2021-07","2022-01"],"tickvals":[18444,18628,18809,18993],"categoryorder":"array","categoryarray":["2020-07","2021-01","2021-07","2022-01"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"as.Date(created_at)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-27,589],"tickmode":"array","ticktext":["0","200","400"],"tickvals":[0,200,400],"categoryorder":"array","categoryarray":["0","200","400"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"n","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"6cbf4348307b":{"x":{},"y":{},"type":"scatter"}},"cur_data":"6cbf4348307b","visdat":{"6cbf4348307b":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="loan-prestamos" class="section level1">
+<h1>Loan (prestamos)</h1>
+<p><img src="5estrellas_files/figure-html/loans-1.png" width="672" /></p>
+</div>
+<div id="solicitudes" class="section level1">
+<h1>Solicitudes</h1>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
