@@ -4,8 +4,6 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "PQR'S"
-      href: PQRs.html
     - text: "5 Estrellas"
       href: 5estrellas.html
     - text: "Impacto contacto efectivo"
