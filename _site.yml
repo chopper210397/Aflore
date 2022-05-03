@@ -10,4 +10,6 @@ navbar:
       href: PQRs.html
     - text: "Impacto contacto efectivo"
       href: contactoefectivo.html
+    - text: "Piloto grupo wthsp"
+      href: piloto_grupo_wthsp.html
 output_dir: "docs"

@@ -1,0 +1,87 @@
+---
+title: "Piloto Grupo Wthsp"
+output:
+  html_document:
+    toc: true
+    toc_float: false
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE, 
+	cache=FALSE
+)
+```
+
+```{r packages}
+library(readr)
+library(readxl)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(kableExtra)
+library(lubridate)
+library(forcats)
+library(stringr)
+library(plotly)
+```
+
+```{r data_manipulation}
+nowthsp<-read_xlsx("nowthsp.xlsx")
+siwthsp<-read_xlsx("siwthsp.xlsx")
+
+```
+
+Hay 276 personas dentro de los grupos de wthsp y 271 fuera de los grupos de wthsp, las muestras son aleatorios y prácticamente similares.
+
+# Número de solicitudes y creditos
+
+```{r no}
+n.s<-nowthsp %>% summarise(total=sum(total_solicitudes))
+n.c<-nowthsp %>% summarise(total=sum(total_credits))
+```
+
+```{r si}
+s.s<-siwthsp %>% summarise(total=sum(total_solicitudes))
+s.c<-siwthsp %>% summarise(total=sum(total_credits))
+```
+
+```{r distintos}
+n.m<-nrow( nowthsp %>% dplyr::distinct(advisor_id))
+s.m<-nrow( siwthsp %>% dplyr::distinct(advisor_id))
+```
+
+## Cuadro comparativo
+
+```{r tabla_comparativa}
+tabla<-tibble(grupo=c("Fuera grupo wthsp","Dentro grupo wthsp"),
+       solicitud=c(n.s,
+                   s.s),
+       credito=c(n.c,
+                 s.c),
+       muestra=c(n.m ,
+                  s.m),
+       porcentaje_soli= c(round( n.s/n.m*100,digits = 2),
+                round( s.s/s.m*100,digits = 2)),
+       porcentaje_cred= c(round( n.c/n.m*100,digits = 2),
+                round( s.c/s.m*100,digits = 2)))
+tabla %>% kbl() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>% footnote(number = 
+                                                                                                                       c("Porcentaje_soli : porcentaje de solicitudes del total de personas en la muestra",
+                                                                                                                                "Porcentaje_cred: porcentaje de creditos del total de personas en la muestra"))
+```
+
+# References:
+
+1.  <https://docs.google.com/spreadsheets/d/1ROW2AKz18N0H8j6qj46x5Z9_oWJJ-yJOwi5e_3XMo6s/edit?usp=sharing>
+
+2.  <https://docs.google.com/spreadsheets/d/1dqAZ7FIMmYO752blOooatpois_WWG07w1hzjCHw9ldI/edit?usp=sharing>
+
+3.  CD-SPRINT 7
