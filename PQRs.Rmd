@@ -37,12 +37,20 @@ library(plotly)
 
 ```{r data_transformation, message=FALSE, warning=FALSE, include=FALSE}
 
-tickets<-read_xls("~/Documentos/GitHub/LabJournalWebsite-master/PQRs_files/data/tickets_enero_20abril_aflore.xls",skip = 2)
+tickets<-read_xls("~/GitHub/Aflore/tickets_abril.xls",skip = 2)
 # como las fechas estan como carácteres y no date lo convertimos 
 tickets$`Created at`<-parse_datetime(tickets$`Created at`)
 tickets$`Updated at`<-parse_datetime(tickets$`Updated at`)
 tickets$`Closed at`<-parse_datetime(tickets$`Closed at`)
 tickets<-tickets %>% mutate(mes=month(`Created at`))
+
+
+
+
+
+
+
+
 
 # tickets<-tickets %>% mutate(mes=ifelse(mes=="1","Enero",ifelse(mes=="2","Febrero",ifelse(mes=="3","Marzo",
 #                                                                             ifelse(mes=="4","Abril","")))))
@@ -79,6 +87,20 @@ ticket_comercial<-tickets %>% filter(Title %in% c("0001- Devolución de saldos p
                                                   "0059 - Corregir Abono negativo a capital",
                                                   "0060 - Pago duplicado"  ))
 tickets_comercial_tabla<-ticket_comercial %>% count(Title) %>% arrange(-n)
+
+```
+
+```{r promediodiames, echo=FALSE}
+# calculando promedios en dias por mes para entregar a eduardo
+tickets %>% filter(mes==4) %>% filter(Customer=="Luisa Moreno" | Owner=="Luisa Moreno" ) %>%
+  mutate(dia=day(`Closed at`)-day(`Created at`)) %>% select(dia) %>% 
+  na.omit() %>% 
+  summarise(promedio=mean(dia))
+
+tickets %>% filter(mes==4) %>% filter(Customer=="Natalia Piedrahita" | Owner=="Natalia Piedrahita" ) %>%
+  mutate(dia=day(`Closed at`)-day(`Created at`)) %>% select(dia) %>% 
+  na.omit() %>% 
+  summarise(promedio=mean(dia))
 
 ```
 
