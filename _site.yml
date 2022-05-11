@@ -4,8 +4,12 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "PQR'S"
-      href: PQRs.html
     - text: "5 Estrellas"
       href: 5estrellas.html
+    - text: "PQRs"
+      href: PQRs.html
+    - text: "Impacto contacto efectivo"
+      href: contactoefectivo.html
+    - text: "Piloto grupo wthsp"
+      href: piloto_grupo_wthsp.html
 output_dir: "docs"

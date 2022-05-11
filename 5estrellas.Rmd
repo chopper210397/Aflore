@@ -39,9 +39,9 @@ library(plotly)
 ```
 
 ```{r data manipulation, echo=FALSE, message=FALSE, warning=FALSE}
-solicitudes<-read.csv("~/GitHub/Aflore/docs/solicitudes_consejeros_1_20_abril.csv",sep=";")
-timeline<-read_xlsx("~/GitHub/Aflore/docs/solicitudes_5_1abril_27abril.xlsx")
-solicitudes_gest_com<-read_xlsx("~/GitHub/Aflore/docs/solicitudes_con_gest_com.xlsx")
+solicitudes<-read.csv("solicitudes_consejeros_1_20_abril.csv",sep=";")
+timeline<-read_xlsx("solicitudes_5_1abril_27abril.xlsx")
+solicitudes_gest_com<-read_xlsx("solicitudes_con_gest_com.xlsx")
 solicitudes$X..Solicitudes<-as.numeric(solicitudes$X..Solicitudes)
 solicitudes$aprobadas<-as.numeric(solicitudes$aprobadas)
 solicitudes$Desembolsadas<-as.numeric(solicitudes$Desembolsadas)
@@ -96,4 +96,19 @@ En los días de semana santa se ve una caída en el número de solicitudes para 
 
 ```{r solicitudes_gestion_comercial}
 ggplotly( solicitudes_gest_com %>% count(as.Date(created_at)) %>% ggplot(aes(x=`as.Date(created_at)`,y=n))+geom_line() )
+```
+
+# Loan (prestamos)
+
+```{r loans}
+# los calculos deben realizarse por created at
+loan<-read_xlsx("loan.xlsx")
+loan<-loan %>% mutate(mes=month(`Created At`),year=year(`Created At`))
+loan %>% count(mes,Status) %>% ggplot(aes(x=mes,y=n,fill=Status,label=n))+geom_bar(stat = "identity",position = "dodge")+geom_text(position = position_dodge(width = 0.7))
+```
+
+# Solicitudes
+
+```{r solicitudes}
+
 ```

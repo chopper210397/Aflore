@@ -1,0 +1,228 @@
+---
+title: "Contacto efectivo"
+author: "Luis Barrios"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE,fig.pos="H"}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r packages}
+library(tidyverse)
+library(readxl)
+library(readr)
+library(dplyr)
+library(lubridate)
+library(tidyr)
+library(plotly)
+
+
+```
+
+```{r reading}
+contactoefectivo<-read_xlsx("contactoefectivo2.xlsx")
+sologestioncomercial<-read_xlsx("sologestioncomercial.xlsx")
+
+```
+
+# Abstract:
+
+Se observa un quiebre (impacto negativo) en la tendencia de las distintas variables medidas tanto en conjunto (\> 6 meses, =\< 6 meses) como por separado para el mes de abril, esto posiblemente debido a una disminución en las gestiones realizadas en el último mes.
+
+# Desarrollo:
+
+# Gestión comercial por mes en "actividad" por CV
+
+Se observa una disminución en el número de gestiones efectivas (actividad) por Coordinador Virtual respecto al mes pasado.
+
+```{r gestioncomercial}
+sologestioncomercial<-sologestioncomercial %>% filter(`Razon O Base`=="Actividad")
+sologestioncomercial<-sologestioncomercial %>% mutate(year=year(Timestamp))
+sologestioncomercial<-sologestioncomercial %>% mutate(mes=month(Timestamp))
+sologestioncomercial %>% filter(year==2022) %>% count(mes) %>% ggplot(aes(x=mes,y=n/9,label=round(n/9)))+
+  geom_bar(stat = "identity",fill="lightblue")+geom_text()+labs(y="Promedio de gestiones por CV")
+
+# sologestioncomercial %>% filter(year=="2022")  %>% count(`¿se Debe Reangedar Con El Consejero?`) %>% arrange(-n) 
+
+borrower_profile<-read_xlsx("borrower_profile.xlsx")
+
+# %>% filter(Status=="Aprobado") 
+#borrower_profile %>% count(`Suggested Product`) %>% arrange(-n) 
+```
+
+# Desembolsos, aprobaciones y solicitudes por mes (\> y =\< 6 juntos) - Clientes Nuevos
+
+Existe una disminución o impacto negativo para el último mes en los créditos aprobados, desembolsos y solicitudes.
+
+```{r datatableau_creditos}
+enero<-read.csv("tableau_enero.csv",sep = ";")
+febrero<-read.csv("tableau_febrero.csv",sep = ";")
+marzo<-read.csv("tableau_marzo.csv",sep = ";")
+abril<-read.csv("tableau_abril.csv",sep = ";")
+
+enero<-enero %>% mutate(mes=1)
+febrero<-febrero %>% mutate(mes=2)
+marzo<-marzo %>% mutate(mes=3)
+abril<-abril %>% mutate(mes=4)
+
+tableau_creditos<-rbind(enero,febrero,marzo,abril)
+tableau_creditos$Valores.de.medidas<-as.numeric(gsub(",", ".",tableau_creditos$Valores.de.medidas ))
+
+# tableau_creditos %>% filter(Nombres.de.medidas!="Monto desembolsado en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,color=Nombres.de.medidas))+geom_line()
+
+```
+
+```{r solicitudesra}
+ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Solicitudes enviadas")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,label=Valores.de.medidas))+geom_line(color="blue")+geom_text()+labs(y="Solicitudes enviadas"))
+```
+
+```{r creditosra}
+ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Aprobadas en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,label=Valores.de.medidas))+geom_line(color="red")+geom_text()+labs(y="Créditos aprobados en el mes"))
+```
+
+```{r desembolso}
+ggplotly(tableau_creditos %>% filter(Nombres.de.medidas=="Desembolsos en el mes")%>%  ggplot(aes(x=mes,y=Valores.de.medidas,label=Valores.de.medidas))+geom_line(color="green")+geom_text()+labs(y="Desembolsos en el mes"))
+```
+
+# Desembolsos y aprobaciones por mes (\> y =\< 6 separados) - Clientes Nuevos
+
+## Solicitudes enviadas
+
+```{r datatableau_creditos_separado}
+eneroabriledades<-read_xlsx("edadeneroabril.xlsx")
+
+ggplotly(eneroabriledades %>% filter(variables %in% c("Solicitudes enviadas 1-6",
+                                                      "Solicitudes enviadas > 6")) %>%
+           ggplot(aes(x=mes,y=valor,color=variables,label=valor))+geom_line()+geom_text(color="black"))
+
+```
+
+## Resto variables
+
+```{r datatableau_rest}
+ggplotly(eneroabriledades %>% filter(variables %in% c("Consejeros enviando 1-6",
+                                                      "Consejeros enviando > 6",
+                                                      "Desembolsos en el mes 1-6",
+                                                      "Desembolsos en el mes > 6",
+                                                      "Consejeros con crédito en el mes 1-6",
+                                                      "Consejeros con crédito en el mes > 6"))  %>%  ggplot(aes(x=mes,y=valor,color=variables,label=valor))+geom_line()+geom_text())
+```
+
+## Promedios
+
+```{r datatableau_rest2}
+ggplotly(eneroabriledades %>% filter(!variables %in% c("Consejeros enviando 1-6",
+                                                      "Consejeros enviando > 6",
+                                                      "Desembolsos en el mes 1-6",
+                                                      "Desembolsos en el mes > 6",
+                                                      "Consejeros con crédito en el mes 1-6",
+                                                      "Consejeros con crédito en el mes > 6",
+                                                      "Solicitudes enviadas 1-6",
+                                                      "Solicitudes enviadas > 6",
+                                                      "% Aprobación decididas mes > 6",
+                                                      "% Aprobación decididas mes"))  %>%  ggplot(aes(x=mes,y=valor,color=variables,label=round(valor,digits = 2)))+geom_line()+geom_text(color="black"))
+```
+
+# Renovación
+
+## Analizando por \> y =\< 6 meses
+
+```{r}
+renovaciones<-read_xlsx("renovaciones.xlsx")
+ggplotly( renovaciones %>% filter(variable=="Aptos")  %>% ggplot(aes(x=mes,y=valor,color=variable,label=valor))+geom_line()+geom_text() +labs(y="Clientes aptos") )
+
+ renovaciones %>% filter(variable!="Aptos") %>% ggplot(aes(x=mes,y=valor,color=variable,label=valor))+geom_line()+geom_text()+scale_fill_discrete(name = "Dose", labels = c("A", "B", "C")) 
+```
+
+## Correlación
+
+Existe una correlación positiva entre el numero de gestiones y el número de solicitudes para edad (mayor a 6 meses)
+
+```{r correlation}
+a<-sologestioncomercial %>% filter(year==2022) %>% count(mes) 
+b<-eneroabriledades %>% filter(variables %in% c("Solicitudes enviadas > 6")) %>% select(mes,valor)
+correlation<-a %>% left_join(b)
+colnames(correlation)[2:3]<-c("gestiones","solicitudes_mayor_6")
+
+cor(correlation$gestiones,correlation$solicitudes_mayor_6)
+```
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
+
+# Agenda pendiente:
+
+Realizar más pruebas para evaluar la veracidad o falsedad de los cálculos siguientes
+
+# Prestamos con gestión comercial por mes (aprobados)
+
+```{r data_transformation}
+prestamosporgestion<-contactoefectivo %>% dplyr::distinct(borrower_id,.keep_all = TRUE)
+prestamosporgestion1<-prestamosporgestion %>% mutate(year=year(Timestamp))
+prestamosporgestion1<-prestamosporgestion1 %>% mutate(mes=month(Timestamp))
+ggplotly(prestamosporgestion1 %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text()+labs(title = "Tomando la fecha del timestamp (fecha de la gestión comercial)"))
+
+# probando con las fechas de created at y no de timestamp
+prestamosporgestion2<-prestamosporgestion %>% mutate(year=year(created_at))
+prestamosporgestion2<-prestamosporgestion2 %>% mutate(mes=month(created_at))
+ggplotly(prestamosporgestion2 %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text()+labs(title = "Tomando la fecha del created at (borrower profile)"))
+
+# probanndo con las fechas de updated at del borrower profile
+prestamosporgestion3<-prestamosporgestion %>% mutate(year=year(updated_at))
+prestamosporgestion3<-prestamosporgestion3 %>% mutate(mes=month(updated_at))
+ggplotly(prestamosporgestion3 %>% filter(year==2022) %>% filter(status=="Aprobado") %>% count(mes) %>% ggplot(aes(x=mes,y=n,label=n))+geom_bar(stat = "identity",fill="lightblue")+geom_text()+labs(title = "Tomando la fecha del updated at (borrower profile)"))
+
+# AGRUPANDO POR MAYOR A 6 MESES O MENOR/IGUAL A 6 MESES
+# prestamosporgestion1$total_months_from_activation[prestamosporgestion1$total_months_from_activation>6]<-"Mayor 6 meses"
+# prestamosporgestion1$total_months_from_activation[prestamosporgestion1$total_months_from_activation<7]<-"Menor o igual 6 meses"
+
+prestamosporgestion1$total_months_from_activation<-ifelse(prestamosporgestion1$total_months_from_activation>6,"Mayor 6 meses",ifelse(prestamosporgestion1$total_months_from_activation<7,"Menor o igual 6 meses","NA"))
+
+```
+
+# Cantidad de contactos efectivos por categoría(aprobados)
+
+Dividiendo entre mayor y menor o igual a 6 meses
+
+```{r sadsda}
+prestamosporgestion1 %>% filter(status=="Aprobado") %>%  filter(year==2022)  %>% count(mes,total_months_from_activation) %>% 
+  ggplot(aes(x=mes,y=n,fill=total_months_from_activation,label=n))+geom_bar(stat = "identity",position = "dodge")+geom_text(position = position_dodge(width = .75))
+
+na_months_aprobado<-prestamosporgestion1 %>% filter(status=="Aprobado") %>%filter(year==2022) %>% filter(!total_months_from_activation %in% c("Mayor 6 meses","Menor o igual 6 meses"))
+
+prestamosporgestion1 %>% filter(status=="Aprobado") %>%filter(year==2022) %>% filter(total_months_from_activation %in% c("Mayor 6 meses")) %>% count(cluster_segment) %>% arrange(-n)
+
+prestamosporgestion1 %>% filter(status=="Aprobado") %>%filter(year==2022) %>% filter(total_months_from_activation %in% c("Menor o igual 6 meses")) %>% count(cluster_segment) %>% arrange(-n)
+
+prestamosporgestion1 %>% filter(status=="Aprobado") %>%filter(year==2022) %>% filter(!total_months_from_activation %in% c("Mayor 6 meses","Menor o igual 6 meses")) %>% count(cluster_segment) %>% arrange(-n)
+```
+
+Los NA en total months from activation con status de credito aprobado(extraido de borrower profile) tienen una estrella o NA en cluster segment (categorización por estrellas)
+
+```{r asdasd}
+prestamosporgestion1 %>% count(total_months_from_activation)
+```
