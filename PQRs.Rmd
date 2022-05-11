@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 	echo = FALSE,
 	message = FALSE,
 	warning = FALSE, 
-	cache=TRUE
+	cache=FALSE
 )
 ```
 
-```{r data_packages, message=FALSE, warning=FALSE, include=FALSE}
+```{r data_package, message=FALSE, warning=FALSE, include=FALSE}
 library(readr)
 library(readxl)
 library(ggplot2)
@@ -31,13 +31,17 @@ library(kableExtra)
 library(lubridate)
 library(forcats)
 library(stringr)
-library(gganimate)
 library(plotly)
+#
 ```
 
 ```{r data_transformation, message=FALSE, warning=FALSE, include=FALSE}
 
+<<<<<<< HEAD
 tickets<-read_xls("~/GitHub/Aflore/tickets_abril.xls",skip = 2)
+=======
+tickets<-read_xls("tickets_enero_20abril_aflore.xls",skip = 2)
+>>>>>>> a82a90f821d0876bb23e5f803a0dba1a6bff1c6b
 # como las fechas estan como carácteres y no date lo convertimos 
 tickets$`Created at`<-parse_datetime(tickets$`Created at`)
 tickets$`Updated at`<-parse_datetime(tickets$`Updated at`)
